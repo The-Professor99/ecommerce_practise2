@@ -1,0 +1,151 @@
+.Navbar {
+    background-color: var(--background);
+}
+.navbar-brand {
+    margin: 0;
+}
+.phone {
+    background-color: var(--background);
+    position: fixed;
+    z-index: 5;
+    height: 100%;
+    width: 60%;
+    top: 0;
+    padding: 2.3rem 1.8rem;
+}
+
+.phone>.navbar-toggler {
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    color: var(--link-color) !important;
+    font-weight: bold;  
+}
+
+.navbar {
+    justify-content: initial;
+}  
+
+.navbar-toggler.collapsed>.close, 
+.navbar-toggler:not(.collapsed)>.navbar-toggler-icon-svg, 
+.laptop-button:not(.collapsed) {
+    display: none;
+} 
+
+
+.dropdown-divider {
+    display: none;
+}
+
+ul.navbar-nav li a:hover{
+    border-bottom: 0.2rem solid;
+    border-bottom-color:  var(--primary-color) !important;
+}
+.active {
+    color: var(--link-color);
+    border-bottom: 0.2rem solid var(--primary-color);
+}
+ul.ml-auto {
+    flex-direction: initial;
+    margin-left: auto;
+    align-items: center;
+}
+
+ul.ml-auto>.nav-item:first-child {
+    padding-top: 0.5rem;
+}
+
+.theme-toggle-container button.btn {
+    background-color: var(--primary-color);
+}
+
+.cart-orders {
+    background-color: var(--primary-color);
+    border-radius: 52%;
+    font-weight: bold;
+    width: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    bottom: 0.7rem;
+    right: 1rem;
+}
+
+
+.account-avatar {
+    margin-left: 0.3rem;
+    border: 0.1rem solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    max-height: 2.2rem;
+}  
+
+.dropdown-toggle::after {
+    border-top-color: var(--text-primary) !important;
+}
+.account-avatar:hover {
+    border: 2px solid var(--primary-color);
+}
+
+.laptop {
+    display: none;
+}
+
+.dropdowns {
+    position: absolute !important;
+}
+.dropdown1 {
+    top: 4.8rem;
+    right: -0.7rem;
+    padding: 1rem;
+    background-color: var(--background);
+}
+.dropdown2 {
+    top: 3.8rem;
+    right: -4rem;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown-toggle, .dropdown {
+background-color: var(--background);
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+@media all and (min-width: 992px) {
+    .laptop {
+        display: initial;
+    }
+
+    .phone {
+        display: none;
+    }
+    .navbar {
+        padding-bottom: 0;
+        align-items: initial;
+    }
+    .navbar-brand {
+        margin-left: 0.4rem;
+    } 
+    ul.navbar-nav li a:hover, .active {
+        padding-bottom: 2rem;
+    }
+
+    .dropdown1 {
+        top: 4rem;
+        right: -2rem;
+    }
+    .dropdown2  {
+        top: 2.8rem;
+        right: -4rem;
+    }
+    .dropdown-divider {
+        display: block;
+        margin: 0;
+    }
+}

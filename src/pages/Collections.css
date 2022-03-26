@@ -1,0 +1,16 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    margin: auto;
+    opacity: var(--opacity);
+}
+
+.search-bar > input {
+    margin-right: 0.5rem;
+    width: 40%;
+}
+.search-bar > select {
+    margin-left: 0.5rem;
+    width: 35%;
+}

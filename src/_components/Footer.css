@@ -1,0 +1,31 @@
+footer {
+    margin-top: auto;
+    /* padding: 0.5rem; */
+    padding-top: 0.2rem;
+    background-color: var(--primary-color);
+    font-size: 1.2rem;
+    text-align: center;    
+    /* bottom: 0; */
+    /* position: fixed; */
+    width: 100%;
+    /* left: 0; */
+    /* display: flex; */
+}
+/* footer .attributions {
+    width: 85%;
+    border-right: 0.2rem solid black;
+    margin-right: 1.5rem;
+} */
+footer p { 
+    margin-bottom: 0;
+    color: var(--text-primary);
+}
+footer p a {
+    color: var(--text-secondary);
+}
+/* .theme-toggle-container {
+    align-self: center;
+} */
+footer button.btn {
+    background-color: transparent;
+}

@@ -1,0 +1,19 @@
+
+.NotFound {
+    color: var(--text-primary);
+}
+@media all and (min-width: 992px) {
+    .NotFound .flex {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        margin-bottom: 2rem;
+    }
+    .NotFound .image-container {
+        width: 50%;;
+    }
+    .NotFound article {
+        width: 40%;
+        align-self: center;
+    }
+}

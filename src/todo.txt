@@ -1,0 +1,18 @@
+# To make a class and share data between men, women, collections and item pages.
+# instead of defining the same things over and over again.
+# The class should be such that the item still gets displayed regardless of entry
+# port, i.e either from main page or not.
+
+change this in displayitems component
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+to something less experimental, and which would create an ellipsis upon certain lines
+
+clean up css
+
+to show data from localstorage instead of fetching or both
+setting up service worker
+to keep refreshing for data after some intervals.
+making light and dark themes
+use scoped-css

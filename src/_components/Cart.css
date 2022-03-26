@@ -1,0 +1,117 @@
+p.card-texts {
+    margin: 6.3rem 4rem;
+    text-align: center;
+    font-weight: bold;
+    /* margin-bottom: 6.3rem; */
+  }
+  .card-details-container {
+    /* display: none; */
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  }
+  .card-details-container-sub {
+    max-height: 6rem;
+    overflow: auto;
+  }
+  .card-details {
+    display: flex;
+    margin: auto;
+    width: 85%;
+  }
+  .card-images {
+    max-width: 30%;
+    max-height: 3.1rem;
+    border-radius: 0.4rem;
+  }
+  .details-description {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 60%;
+    height: 4rem;
+  }
+  .details-description p:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+  }
+  .card-details button {
+    margin-left: auto;
+    border: 0;
+    background-color: white;
+  }
+
+  .card-title {
+    margin: 1rem;
+    font-weight: bold;
+    margin-left: 1.5rem;
+  }
+.cart-orders {
+    border-radius: 52%;
+    font-weight: bold;
+    width: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    bottom: 0.7rem;
+    right: 1rem;
+  }
+
+  .cart-adder {
+    background-color: hsl(223, 64%, 98%);
+    border-radius: 0.4rem;
+    padding: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cart-adder  * {
+    background-color: inherit;
+    border: 0;
+  }
+  .cart-adder input {
+    width: 75%;
+    text-align: center;
+  }
+
+  .Cart {
+    width: 20rem;
+    z-index: 2;
+    padding: 0.5rem;
+  }
+  .Cart 
+
+  .checkout {
+    width: 85%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+  .checkout button {
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.5rem;
+  }
+  
+@media all and (min-width: 992px) {
+
+  .cart-orders-display {
+    box-shadow: -16px 2.3px 19.1px -15px rgb(182, 188, 200, 1), 
+                16px 2.3px 19.1px -15px rgb(182, 188, 200, 1), 
+                0px 31.3px 19.1px -19px rgb(182, 188, 200, 1);
+}
+
+.cart-orders-display {
+    margin: auto;
+    width: 30rem;
+    /* height: 18rem; */
+    border-radius: 1rem;
+  }
+.cart-adder button {
+    width: 20%;
+}
+.cart-adder input {
+    width: 50%;
+}
+.cart-adder {
+    width: 40%;
+}
+}

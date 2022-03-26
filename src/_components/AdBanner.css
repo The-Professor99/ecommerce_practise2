@@ -1,0 +1,16 @@
+.AdBanner {
+    width: 90%;
+    margin: auto;
+    opacity: var(--opacity);
+}
+.carousel-control-next, .carousel-control-prev {
+    opacity: 1;
+}
+.carousel-item {
+    padding-bottom: 0.5rem;
+}
+
+.carousel-item img {
+    height: 12rem;
+    object-fit: fill;
+}

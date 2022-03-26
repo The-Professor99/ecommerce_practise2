@@ -1,38 +1,97 @@
+/*1 - General tags */
+html {
+  box-sizing: border-box;
+  font-size: 16px; /* used absolute value so the user's \
+  browser settings won't scale my site in unanticipated ways */
+}
+*, 
+*::before, 
+*::after {
+  box-sizing: inherit;
+}
+html, 
+body {
+  height: 100%;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-weight: 400;
+}
+img {
+  max-width: 100%;
+} 
+a {
+  cursor: pointer;
+} 
+button:active {
+  background-color: blue;
+}
+
+button {
+  border: 0;
+  font-weight: 700;
+}
+.txt-orange {
+  color: hsl(26, 100%, 55%);
+}
+.bck-orange {
+  background-color: hsl(26, 100%, 55%);
+}
+.txt-dark-blue {
+  color: var(--text-secondary);
+}
+.txt-gray-blue {
+  color: hsl(219, 9%, 45%);
+}
+.txt-gray-blue-light {
+  color: hsl(220, 14%, 75%);
+}
+.txt-white {
+  color: hsl(0, 0%, 100%);
+}
+.txt-400 {
+  font-weight: 400;
+}
+.txt-700 {
+  font-weight: 700;
+}
+.pointer {
+  cursor: pointer;
+}
+
+/* App Styling Starts Here */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--secondary-color);
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+}
+h2 {
+  text-align: center;    
+  font-size: 2rem;
+  text-decoration: underline;
+  margin-top: 1rem;
+}
+.scrollbtn {
+  /* margin-bottom: 9rem; */
+  width: 8rem;
+  margin-left: auto;
+}
+.data-container {
+  margin: auto;
+  width: 95%; 
+  display: flex; 
+  flex-wrap: wrap;    
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 50vh;
+  align-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.App button.scrollbtn {
+  background-color: var(--tertiary-color);
+  border-color: var(--tertiary-color);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* @media all and (min-width: 992px) {
+  .scrollbtn {
+    margin-bottom: 7rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
+} */
