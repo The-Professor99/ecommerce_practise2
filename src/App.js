@@ -31,7 +31,7 @@ function App() {
         <main>
           <AdBanner />
           <div>
-            <Outlet className="outlet" darkTheme={darkTheme} />
+            <Outlet className="outlet" />
           </div>
         </main>
         <button onClick={executeScroll} className='mt-2 btn btn-primary scrollbtn center'> Back to top </button> 

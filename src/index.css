@@ -22,8 +22,12 @@ code {
   --primary-color: hsl(26, 100%, 55%);
   --secondary-color: hsl(25, 100%, 94%);
   --tertiary-color: blue;
+  --tertiary-color2: hsl(219, 9%, 45%);
   --opacity: 1;
   --box-shadow: 3px 6px 5px rgba(182, 188, 200, 1);
+  --box-shadow2: -16px 2.3px 19.1px -15px rgb(182, 188, 200, 1), 
+                  16px 2.3px 19.1px -15px rgb(182, 188, 200, 1), 
+                  0px 31.3px 19.1px -19px rgb(182, 188, 200, 1);
   /* #bb86fc; */
   /* --footer-color: hsl(26, 100%, 55%); */
 }
@@ -40,6 +44,8 @@ code {
   --primary-color: blue;
   --secondary-color: #292929;
   --tertiary-color: #5B3CB0;
+  --tertiary-color2: #ee82ee;
   --opacity: 0.5;
   --box-shadow: 0;
+  --box-shadow2: 0;
 }

@@ -1,11 +1,24 @@
 import React from 'react';
 
-import { useStateValue } from '@/_helpers';
+import { useStateValue, getCartTotal } from '@/_helpers';
 
 import './Cart.css';
 import deleteIcon from '../images/icon-delete.svg';
 
+
+
 function CartItem({ item }) {
+
+    const [{ cart }, dispatch] = useStateValue();
+
+    const removeFromCart = () => {
+        dispatch({
+            type: "REMOVE_FROM_BASKET",
+            item: {
+                id: item.id
+            }
+        })
+    }
     return (
         <div className='card-details'>
             <img 
@@ -13,37 +26,44 @@ function CartItem({ item }) {
             className="card-images" 
             alt="Product picture" />
             <div className="details-description">
-                <p className="txt-dark-blue">
+                <p className="txt-gray-purple">
                     {item.title}
                 </p>
-                <p className="txt-dark-blue">
+                <p className="txt-gray-purple">
                     <span>
                         {item.price}
                     </span> 
                     x 
                     <span>
-                        3
+                        {item.quantity}
                     </span> 
-                    <span className="txt-dark-blue txt-700">
-                        750
+                    <span className="txt-black-white txt-700 ms-4">
+                       $ {(item.price * item.quantity).toFixed(2)}
                     </span>
                 </p>
             </div>
             <button 
             type="button" 
-            className="card-images delete">
+            className="card-images delete" onClick={removeFromCart}>
                 <img src={deleteIcon} alt="delete button" />
             </button>
         </div>
     )
 }
 
+
 function Cart() {
+  
   const [{ cart }, dispatch] = useStateValue();
+  const showTotal = () => {
+        let total = getCartTotal(cart);
+        console.log(total)
+        alert(`Your Total Purchase is: ${total.toFixed(2)}`)
+  }
   return (
     <div className="Cart cart-orders-display card">
         <div className="card-block">
-            <h3 className="card-title txt-dark-blue">
+            <h3 className="card-title txt-black-white">
                 Cart
             </h3>
             <div className="dropdown-divider"></div>
@@ -61,13 +81,14 @@ function Cart() {
                     id="checkOut">
                         <button 
                         type="button" 
-                        className="bck-orange txt-white">
+                        className="txt-white" 
+                        onClick={showTotal}>
                             Checkout
                         </button>
                     </div>
                 </div>
             ) : (
-            <p className="card-texts txt-gray-blue" id="empty">Your Cart is Empty</p> 
+            <p className="card-texts txt-black-white" id="empty">Your Cart is Empty</p> 
             )}
         </div>
     </div>

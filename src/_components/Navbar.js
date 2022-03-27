@@ -130,7 +130,8 @@ function Navbar(props) {
                         </button>
                         <div 
                         className='dropdown-menu dropdowns dropdown2'
-                        aria-labelledby='dropdownCartButton'>
+                        aria-labelledby='dropdownCartButton'
+                        onClick={() => event.stopPropagation()}>
                             <Cart />
                         </div>
                     </div>

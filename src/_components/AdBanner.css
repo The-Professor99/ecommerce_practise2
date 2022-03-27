@@ -10,7 +10,7 @@
     padding-bottom: 0.5rem;
 }
 
-.carousel-item img {
+.AdBanner .carousel-item img {
     height: 12rem;
     object-fit: fill;
 }

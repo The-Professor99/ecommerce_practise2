@@ -5,3 +5,4 @@ export * from './SearchBar';
 export * from './ErrorPage';
 export * from './Spinner';
 export * from './AdBanner';
+export * from './DisplayItem';

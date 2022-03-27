@@ -19,6 +19,7 @@ ReactDOM.render(
         <Route path='women' element={<Women />} />
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
+        <Route path='test' element={<Item />} />
         <Route path='items/:itemId' element={<Item />} />
         <Route path="*" element={<NotFound />} />
         <Route element={<Account />} >

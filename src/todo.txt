@@ -13,6 +13,6 @@ clean up css
 
 to show data from localstorage instead of fetching or both
 setting up service worker
-to keep refreshing for data after some intervals.
+to keep refreshing for data after some intervals upon error.
 making light and dark themes
 use scoped-css

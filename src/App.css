@@ -38,6 +38,18 @@ button {
 .txt-dark-blue {
   color: var(--text-secondary);
 }
+.txt-black-white {
+  color: var(--text-primary);
+}
+.txt-white-black {
+  color: var(--background);
+}
+.txt-gray-purple {
+  color: var(--tertiary-color2)
+}
+.txt-gold-blue {
+  color: var(--primary-color)
+}
 .txt-gray-blue {
   color: hsl(219, 9%, 45%);
 }
