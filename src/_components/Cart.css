@@ -19,7 +19,7 @@ p.card-texts {
     width: 85%;
   }
   .card-images {
-    max-width: 30%;
+    width: 3rem;
     max-height: 3.1rem;
     border-radius: 0.4rem;
   }

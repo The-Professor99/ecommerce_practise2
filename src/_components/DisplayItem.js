@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 import { useStateValue } from '@/_helpers';
 
@@ -15,7 +16,10 @@ function DisplayItem(props) {
     
     const [quantity, setQuantity] = useState(1)
     const [{ cart }, dispatch] = useStateValue();
-  
+    let localCart = JSON.parse(localStorage.getItem("carts"));
+    let mainCart = cart.length ? cart : localCart
+    // console.log(mainCart, localCart, cart)
+
     let dataLength = 20 // change this to reflect length of whole products array
     let strPrice = props.value.price.toString()
     let percOff = parseInt(strPrice.charAt(0) + 0, 10)
@@ -30,7 +34,7 @@ function DisplayItem(props) {
                 price: props.value.price,
                 quantity: quantity,
             }
-        })
+        });
     }
     
     const removeFromBasket = (id) => {

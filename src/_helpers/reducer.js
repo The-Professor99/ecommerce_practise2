@@ -1,5 +1,12 @@
+let localCart;
+if (localStorage.getItem('carts')) {
+    localCart = JSON.parse(localStorage.getItem("carts"));
+} else {
+    localCart = []
+}
+
 export const initialState = {
-    cart: [],
+    cart: localCart,
     user: null
 };
 
@@ -18,6 +25,7 @@ const reducer = (state=initialState, action) => {
             if (indexa >= 0) {
                 newCarta.splice(indexa, 1);
                 alert("Item already added, updating")
+                localStorage.setItem('carts', JSON.stringify([...newCarta, action.item]));
                 return {
                     ...state,
                     cart: [...newCarta, action.item]
@@ -25,6 +33,7 @@ const reducer = (state=initialState, action) => {
                 
             } else {
                 alert("New Item is being added to cart")
+                localStorage.setItem('carts', JSON.stringify([...state.cart, action.item]));
                 return {
                     ...state,
                     cart: [...state.cart, action.item]
@@ -40,6 +49,7 @@ const reducer = (state=initialState, action) => {
             } else {
                 console.warn("cannot remove product. Not in cart")
             }
+            localStorage.setItem('carts', JSON.stringify(newCart));
             return {
                 ...state,
                 cart: newCart

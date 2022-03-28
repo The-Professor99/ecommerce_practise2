@@ -55,6 +55,9 @@ function CartItem({ item }) {
 function Cart() {
   
   const [{ cart }, dispatch] = useStateValue();
+//   let carts = localStorage.getItem("carts");
+//   console.log(carts)
+
   const showTotal = () => {
         let total = getCartTotal(cart);
         console.log(total)
