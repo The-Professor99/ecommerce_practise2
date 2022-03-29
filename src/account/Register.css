@@ -3,15 +3,16 @@
     border-color: var(--primary-color);
 }
 .confirm-password, .password {
-    width: 90%;
+    width: 85%;
 }
 .toggle-eye {
-    width: 8%;
+    width: 10%;
     background: white;
     display: flex;
     justify-content: center;
     margin-left: auto;
     border-radius: 0.3rem;
+    padding: 0 0.9rem;
 }
 .eye {
     color: hsl(220, 13%, 13%);

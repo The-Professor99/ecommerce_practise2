@@ -1,11 +1,12 @@
 import { Role } from './role';
 
 // array in local storage for registered users
-const usersKey = 'react-signup-verification-boilerplate-users';
+const usersKey = 'users-test-ecommerce';
 // as this is a fake back end, the users registered will be stored in 
 // localStorage as opposed to actual storage in host servers for 
 // real back end systems and outside this user application.
 let users = JSON.parse(localStorage.getItem(usersKey)) || [];
+// the above acts as database of users.
 
 export function configureFakeBackend() {
     let realFetch = window.fetch;
@@ -21,6 +22,10 @@ export function configureFakeBackend() {
                         return register();
                     case url.endsWith('/accounts/verify-email') && method === 'POST':
                         return verifyEmail();
+                    case url.endsWith('/accounts/login') && method === 'POST':
+                        return login();
+                    case url.endsWith('/accounts/refresh-token') && method === 'POST':
+                        return refreshToken();
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -63,8 +68,9 @@ export function configureFakeBackend() {
                 user.isVerified = false;
                 user.refreshTokens = [];
                 delete user.confirmPassword;
-                delete user.password;
                 users.push(user);
+                // users details being saved to local storage
+                // would be saved to real database in real system.
                 localStorage.setItem(usersKey, JSON.stringify(users));
 
                 // display verification email in alert
@@ -96,6 +102,52 @@ export function configureFakeBackend() {
                 return ok();
             }
 
+            function login() {
+                const { email, password } = body();
+                const user = users.find(x => x.email === email && x.password === password && x.isVerified);
+
+                if (!user) return error('Email or password is incorrect');
+
+                // add refresh token to user
+                user.refreshTokens.push(generateRefreshToken());
+
+                return ok({
+                    id: user.id,
+                    email: user.email,
+                    title: user.title,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    role: user.role,
+                    jwtToken: generateJwtToken(user)
+                });
+            }
+
+
+            function refreshToken() {
+                const refreshToken = getRefreshToken();
+                
+                if (!refreshToken) return unauthorized();
+
+                const user = users.find(x => x.refreshTokens.includes(refreshToken));
+                
+                if (!user) return unauthorized();
+
+                // replace old refresh token with a new one and save
+                user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
+                user.refreshTokens.push(generateRefreshToken());
+                localStorage.setItem(usersKey, JSON.stringify(users));
+
+                return ok({
+                    id: user.id,
+                    email: user.email,
+                    title: user.title,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    role: user.role,
+                    jwtToken: generateJwtToken(user)
+                })
+            }
+
     
             function ok(body) {
                 resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(body)) });
@@ -111,6 +163,32 @@ export function configureFakeBackend() {
 
             function newUserId() {
                 return users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            }
+
+            function generateRefreshToken() {
+                const token = new Date().getTime().toString();
+
+                // add token cookie that expires in 7 days
+                const expires = new Date(Date.now() + 7*24*60*60*1000).toUTCString();
+                document.cookie = `fakeRefreshToken=${token}; expires=${expires}; path=/`;
+
+                return token;
+            }
+
+
+            function generateJwtToken(user) {
+                // create token that expires in 15 minutes
+                const tokenPayload = { 
+                    exp: Math.round(new Date(Date.now() + 15*60*1000).getTime() / 1000),
+                    id: user.id
+                }
+                
+                return (JSON.stringify(tokenPayload)).toString('base64');
+            }
+
+            function getRefreshToken() {
+                // get refresh token from cookie
+                return (document.cookie.split(';').find(x => x.includes('fakeRefreshToken')) || '=').split('=')[1];
             }
         });
     }

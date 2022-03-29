@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { accountService } from '@/_services';
 import './Login.css';
 
 function Login() {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     const initialValues = {
         email: '',
@@ -22,15 +23,16 @@ function Login() {
     });
 
     function onSubmit({ email, password }, { setSubmitting }) {
-        alertService.clear();
+        // alertService.clear();
         accountService.login(email, password)
             .then(() => {
                 const { from } = location.state || { from: { pathname: "/" } };
-                history.push(from);
+                navigate(from);
             })
             .catch(error => {
                 setSubmitting(false);
-                alertService.error(error);
+                console.log(error)
+                // alertService.error(error);
             });
     }
 
@@ -75,7 +77,7 @@ function Login() {
                                 <Link to="/account/forgot-password" className="btn btn-link pr-0">Forgot Password?</Link>
                             </div>
                         </div>
-                        <Link to='/account/verify-email?token=1648508014212'>Verify</Link>
+                        <Link to='/account/verify-email?token=1648515364709'>Verify</Link>
                     </div>
                 </Form>
             )}

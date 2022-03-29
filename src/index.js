@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { Men, Women, About, Contact, NotFound, Collections, Item } from '@/pages';
 import { Login, Register, Account, ForgotPassword, VerifyEmail  } from '@/account';
+import { Profile, UserDetails } from '@/profile';
 
 import { configureFakeBackend } from '@/_helpers';
 
@@ -30,6 +31,9 @@ ReactDOM.render(
           <Route path='/account/register' element={<Register />} />
           <Route path='/account/forgot-password' element={<ForgotPassword />} />
           <Route path='/account/verify-email' element={<VerifyEmail />} />
+        </Route>
+        <Route path='/profile' element={<Profile />} >
+          <Route index element={<UserDetails />} />
         </Route>
       </Route>
     </Routes>
