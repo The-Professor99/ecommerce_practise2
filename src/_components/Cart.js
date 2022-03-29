@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useStateValue, getCartTotal } from '@/_helpers';
 
 import './Cart.css';
@@ -55,8 +54,6 @@ function CartItem({ item }) {
 function Cart() {
   
   const [{ cart }, dispatch] = useStateValue();
-//   let carts = localStorage.getItem("carts");
-//   console.log(carts)
 
   const showTotal = () => {
         let total = getCartTotal(cart);

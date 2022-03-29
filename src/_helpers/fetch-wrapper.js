@@ -1,3 +1,7 @@
+import config from 'config';
+
+import { accountService } from '@/_services';
+
 export const fetchWrapper = {
     get, 
     post,
@@ -6,7 +10,6 @@ export const fetchWrapper = {
 }
 
 async function get(url) {
-    let results;
     const requestOptions = {
         method: 'GET',
     };
@@ -19,14 +22,18 @@ async function post(url, body) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...authHeader(url) 
         },
         credentials: 'include',
         body: JSON.stringify(body)
     };
+
     const response = await fetch(url, requestOptions);
     return handleResponse(response);
 }
+
+
 
 async function put(url, body) {
     const requestOptions = {
@@ -49,10 +56,17 @@ async function _delete(url) {
     return handleResponse(response);
 }
 // helper functions
-// function authHeader(url) {
-//     // return auth header with jwt if user is logged in and request is to the api url
-//     const user = accou
-// }
+function authHeader(url) {
+    // return auth header with jwt if user is logged in and request is to the api url
+    const user = accountService.userValue;
+    const isLoggedIn = user && user.jwtToken;
+    const isApiUrl = url.startsWith(config.apiUrl);
+    if (isLoggedIn && isApiUrl) {
+        return { Authorization: `Bearer ${user.jwtToken}` };
+    } else {
+        return {};
+    }
+}
 
 function handleResponse(response) {
     return response.text().then(text => {

@@ -16,9 +16,6 @@ function DisplayItem(props) {
     
     const [quantity, setQuantity] = useState(1)
     const [{ cart }, dispatch] = useStateValue();
-    let localCart = JSON.parse(localStorage.getItem("carts"));
-    let mainCart = cart.length ? cart : localCart
-    // console.log(mainCart, localCart, cart)
 
     let dataLength = 20 // change this to reflect length of whole products array
     let strPrice = props.value.price.toString()

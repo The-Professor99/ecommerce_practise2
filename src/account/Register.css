@@ -1,0 +1,19 @@
+.Register button.btn, .form-check-input.valid {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.confirm-password, .password {
+    width: 90%;
+}
+.toggle-eye {
+    width: 8%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    border-radius: 0.3rem;
+}
+.eye {
+    color: hsl(220, 13%, 13%);
+    align-self: center;
+}

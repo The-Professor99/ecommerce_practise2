@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { Men, Women, About, Contact, NotFound, Collections, Item } from '@/pages';
-import { Login, Register, Account } from '@/account';
+import { Login, Register, Account, ForgotPassword, VerifyEmail  } from '@/account';
+
+import { configureFakeBackend } from '@/_helpers';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 
+configureFakeBackend();
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
@@ -19,12 +22,14 @@ ReactDOM.render(
         <Route path='women' element={<Women />} />
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
-        <Route path='test' element={<Item />} />
+        <Route path='test' element={<Register />} />
         <Route path='items/:itemId' element={<Item />} />
         <Route path="*" element={<NotFound />} />
         <Route element={<Account />} >
           <Route path='/account/login' element={<Login />} />
           <Route path='/account/register' element={<Register />} />
+          <Route path='/account/forgot-password' element={<ForgotPassword />} />
+          <Route path='/account/verify-email' element={<VerifyEmail />} />
         </Route>
       </Route>
     </Routes>
