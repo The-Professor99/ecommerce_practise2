@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 
-import { useStateValue } from '@/_helpers';
+import { useStateValue, Role  } from '@/_helpers';
+import { accountService } from '@/_services';
 
 import { Cart } from './Cart';
 
@@ -45,6 +46,18 @@ function NavLinks() {
 
 function Navbar(props) {
   const [{cart, user}, dispatch] = useStateValue();
+
+  const userDetail = accountService.userValue;
+  console.log(userDetail, user, "1");  
+  useEffect(() => {
+      if (userDetail) {
+      dispatch({
+          type: 'SET_USER',
+          user: userDetail
+      });
+      }
+  }, []);
+  console.log(userDetail, user, "2");
 
   return (
     <header className='Navbar'>
@@ -169,13 +182,15 @@ function Navbar(props) {
                         <div 
                         className="dropdown-menu dropdowns dropdown1" 
                         aria-labelledby="dropdownMenuButton">
-                            <li className='dropdown-item'>
-                                Hey UsernameHere
-                            </li>
+                            <Link className='dropdown-item' to='/profile'>
+                                Visit Profile
+                            </Link>
+                            {user.role === Role.Admin &&
+                            <Link to="/admin" className="dropdown-item">Admin</Link>
+                            }
                             <li
                             className="dropdown-item" 
-                            to='account/login' 
-                            onClick={handleAuthentication}>
+                            onClick={accountService.logout}>
                                 Logout
                             </li>
                         </div>

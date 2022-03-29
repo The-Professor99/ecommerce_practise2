@@ -3,17 +3,19 @@ import { Buffer } from 'buffer';
 
 import config from 'config';
 
-import { fetchWrapper } from '@/_helpers';
+import { fetchWrapper, useStateValue } from '@/_helpers';
+
 const userSubject = new BehaviorSubject(null);
 const baseUrl = `${config.apiUrl}/accounts`;
 
 const userKey = 'user-account-test-ecommerce';
-let userDetails = JSON.parse(localStorage.getItem(userKey)) || [];
+// let userDetails = JSON.parse(localStorage.getItem(userKey)) || [];0
 
 export const accountService = {
     register,
     verifyEmail,
     login,
+    refreshToken,
     user: userSubject.asObservable(),
     get userValue () { return userSubject.value }
 };
@@ -43,14 +45,35 @@ function login(email, password) {
 
 let refreshTokenTimeout;
 
+
+
 function refreshToken() {
+
+    // const [{ user }, dispatch] = useStateValue();
+
+    // function setUser(userDetail) {
+    //     console.log("What's happening??")
+    //     console.log(userDetail, user, 'userDetail')
+    //     dispatch({
+    //         type: 'SET_USER',
+    //         user: userDetail
+    //     });
+    // }
+
     return fetchWrapper.post(`${baseUrl}/refresh-token`, {})
         .then(user => {
             // publish user to subscribers and start timer to refresh token
             userSubject.next(user);
             startRefreshTokenTimer();
+            delete user.jwtToken;
+            localStorage.setItem(userKey, JSON.stringify(user) || null);
+            console.log("Got here!")
+            // setUser(user)
             return user;
-        });
+        })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
 function startRefreshTokenTimer() {

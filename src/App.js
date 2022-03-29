@@ -10,6 +10,8 @@ function App() {
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [darkTheme, setTheme] = useLocalStorage('darkTheme', defaultDark ? true : false);
   
+  console.log(useStateValue(), "usesta"); 
+
   const switchTheme = () => {
     setTheme(!darkTheme)
   };
@@ -22,7 +24,6 @@ function App() {
   });
 
   return (
-
     <StateProvider initialState={initialState} reducer={reducer}>
       <div className="App" data-theme={darkTheme} ref={myRef} >
         <Navbar 

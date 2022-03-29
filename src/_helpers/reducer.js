@@ -1,13 +1,19 @@
 let localCart;
+let localUser;
 if (localStorage.getItem('carts')) {
     localCart = JSON.parse(localStorage.getItem("carts"));
 } else {
     localCart = []
 }
 
+if (localStorage.getItem('user-account-test-ecommerce')) {
+    localUser = JSON.parse(localStorage.getItem("user-account-test-ecommerce"));
+} else {
+    localUser = null
+}
 export const initialState = {
     cart: localCart,
-    user: null
+    user: localUser
 };
 
 // Selector
@@ -53,6 +59,12 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 cart: newCart
+            }
+
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user
             }
         default: 
             return state;

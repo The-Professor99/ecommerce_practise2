@@ -110,6 +110,7 @@ export function configureFakeBackend() {
 
                 // add refresh token to user
                 user.refreshTokens.push(generateRefreshToken());
+                localStorage.setItem(usersKey, JSON.stringify(users));
 
                 return ok({
                     id: user.id,
@@ -128,6 +129,7 @@ export function configureFakeBackend() {
                 
                 if (!refreshToken) return unauthorized();
 
+                console.log(users, refreshToken)
                 const user = users.find(x => x.refreshTokens.includes(refreshToken));
                 
                 if (!user) return unauthorized();
@@ -159,6 +161,10 @@ export function configureFakeBackend() {
 
             function body() {
                 return opts.body && JSON.parse(opts.body);    
+            }
+
+            function unauthorized() {
+                resolve({ status: 401, text: () => Promise.resolve(JSON.stringify({ message: 'Unauthorized' })) });
             }
 
             function newUserId() {
