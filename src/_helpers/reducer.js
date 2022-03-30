@@ -1,5 +1,6 @@
 let localCart;
 let localUser;
+
 if (localStorage.getItem('carts')) {
     localCart = JSON.parse(localStorage.getItem("carts"));
 } else {
@@ -11,6 +12,7 @@ if (localStorage.getItem('user-account-test-ecommerce')) {
 } else {
     localUser = null
 }
+
 export const initialState = {
     cart: localCart,
     user: localUser

@@ -16,6 +16,7 @@ export const accountService = {
     verifyEmail,
     login,
     refreshToken,
+    logout,
     user: userSubject.asObservable(),
     get userValue () { return userSubject.value }
 };
@@ -34,10 +35,19 @@ function login(email, password) {
             // publish user to subscribers and start timer to refresh token
             userSubject.next(user);
             startRefreshTokenTimer();
-            delete user.jwtToken
             localStorage.setItem(userKey, JSON.stringify(user) || null);
             return user;
         });
+}
+
+function logout() {
+    console.log("check logging out")
+    // revoke token, stop refresh timer, publish null to user subscribers and redirect to login page
+    fetchWrapper.post(`${baseUrl}/revoke-token`, {});
+    stopRefreshTokenTimer();
+    localStorage.removeItem(userKey);
+    userSubject.next(null);
+    return;
 }
 
 
@@ -49,26 +59,12 @@ let refreshTokenTimeout;
 
 function refreshToken() {
 
-    // const [{ user }, dispatch] = useStateValue();
-
-    // function setUser(userDetail) {
-    //     console.log("What's happening??")
-    //     console.log(userDetail, user, 'userDetail')
-    //     dispatch({
-    //         type: 'SET_USER',
-    //         user: userDetail
-    //     });
-    // }
-
     return fetchWrapper.post(`${baseUrl}/refresh-token`, {})
         .then(user => {
             // publish user to subscribers and start timer to refresh token
             userSubject.next(user);
             startRefreshTokenTimer();
-            delete user.jwtToken;
             localStorage.setItem(userKey, JSON.stringify(user) || null);
-            console.log("Got here!")
-            // setUser(user)
             return user;
         })
         .catch(error => {
@@ -77,7 +73,10 @@ function refreshToken() {
 }
 
 function startRefreshTokenTimer() {
-    const jwtToken = JSON.parse(userSubject.value.jwtToken)
+
+    const jwtToken = JSON.parse(Buffer.from(userSubject.value.jwtToken.split('.')[1], 'base64'))
+    console.log("checking startrefresh: ", jwtToken)
+
 
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(jwtToken.exp * 1000);
@@ -85,4 +84,6 @@ function startRefreshTokenTimer() {
     refreshTokenTimeout = setTimeout(refreshToken, timeout);
 }
 
-
+function stopRefreshTokenTimer() {
+    clearTimeout(refreshTokenTimeout);
+}

@@ -59,6 +59,7 @@ async function _delete(url) {
 function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
     const user = accountService.userValue;
+    console.log("checking authHeader : ", user)
     const isLoggedIn = user && user.jwtToken;
     const isApiUrl = url.startsWith(config.apiUrl);
     if (isLoggedIn && isApiUrl) {

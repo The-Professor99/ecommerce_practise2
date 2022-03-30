@@ -1,4 +1,5 @@
 import { Role } from './role';
+import { Buffer } from 'buffer';
 
 // array in local storage for registered users
 const usersKey = 'users-test-ecommerce';
@@ -26,6 +27,8 @@ export function configureFakeBackend() {
                         return login();
                     case url.endsWith('/accounts/refresh-token') && method === 'POST':
                         return refreshToken();
+                    case url.endsWith('/accounts/revoke-token') && method === 'POST':
+                        return revokeToken();
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -150,6 +153,21 @@ export function configureFakeBackend() {
                 })
             }
 
+            function revokeToken() {
+                console.log("checking revoke token 1 ")
+                if (!isAuthenticated()) return unauthorized();
+                
+                console.log("checking revoke 2")
+                const refreshToken = getRefreshToken();
+                const user = users.find(x => x.refreshTokens.includes(refreshToken));
+                
+                // revoke token and save
+                user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
+                localStorage.setItem(usersKey, JSON.stringify(users));
+
+                return ok();
+            }
+
     
             function ok(body) {
                 resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(body)) });
@@ -188,13 +206,34 @@ export function configureFakeBackend() {
                     exp: Math.round(new Date(Date.now() + 15*60*1000).getTime() / 1000),
                     id: user.id
                 }
-                
-                return (JSON.stringify(tokenPayload)).toString('base64');
+                // let buf = Buffer(tokenPayload.toString())
+                let tokenJsonStr = JSON.stringify(tokenPayload);
+                let tokenJsonB64 = Buffer.from(tokenJsonStr).toString("base64");
+                console.log("checking jwt: ", tokenJsonB64)
+                return `fake-jwt-token.${tokenJsonB64}`;
             }
 
             function getRefreshToken() {
                 // get refresh token from cookie
                 return (document.cookie.split(';').find(x => x.includes('fakeRefreshToken')) || '=').split('=')[1];
+            }
+
+            function isAuthenticated() {
+                return !!currentUser();
+            }
+
+            function currentUser() {
+                // check if jwt token is in auth header
+                const authHeader = opts.headers['Authorization'] || '';
+                if (!authHeader.startsWith('Bearer fake-jwt-token')) return;
+
+
+                // check if token is expired
+                const jwtToken = JSON.parse(Buffer.from(authHeader.split('.')[1], 'base64'));
+                const tokenExpired = Date.now() > (jwtToken.exp * 1000);
+                if (tokenExpired) return;
+                const user = users.find(x => x.id === jwtToken.id);
+                return user;
             }
         });
     }

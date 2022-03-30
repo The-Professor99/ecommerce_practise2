@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 
 
 import { useStateValue, Role  } from '@/_helpers';
@@ -17,10 +17,6 @@ import logoLight from '../images/logo-light.svg';
 import cartIcon from '../images/icon-cart-dark.svg';
 import cartIconLight from '../images/icon-cart.svg';
 import avatar from '../images/image-avatar.png';
-
-const handleAuthentication = () => {
-    console.log("Yeah")
-}
 
 function NavLinks() {
     return (
@@ -44,18 +40,33 @@ function NavLinks() {
     )
 }
 
+
 function Navbar(props) {
   const [{cart, user}, dispatch] = useStateValue();
 
+  const navigate = useNavigate();
+
   const userDetail = accountService.userValue;
-  console.log(userDetail, user, "1");  
+  console.log(userDetail, user, "1");
+
+  function handleAuthentication() {
+    console.log("checking hey1")
+    accountService.logout();
+    console.log("checking hey2")
+    navigate('/account/login');
+  }
+//   useEffect(() => {
+// }, []);
   useEffect(() => {
-      if (userDetail) {
-      dispatch({
-          type: 'SET_USER',
-          user: userDetail
-      });
-      }
+
+    const subscription = accountService.user.subscribe(userDetail => {
+        {
+        dispatch({
+            type: 'SET_USER',
+            user: userDetail
+        });
+        }});
+    return subscription.unsubscribe;
   }, []);
   console.log(userDetail, user, "2");
 
@@ -190,7 +201,7 @@ function Navbar(props) {
                             }
                             <li
                             className="dropdown-item" 
-                            onClick={accountService.logout}>
+                            onClick={handleAuthentication}>
                                 Logout
                             </li>
                         </div>
