@@ -28,7 +28,6 @@ export const getCartTotal = (cart) =>
     cart?.reduce((amount, item) => (item.price * item.quantity)  + amount, 0)
 
 const reducer = (state=initialState, action) => {
-    console.log(action);
     switch(action.type) {
         case 'ADD_TO_CART':
             const indexa = state.cart.findIndex(
@@ -37,7 +36,6 @@ const reducer = (state=initialState, action) => {
             let newCarta = [...state.cart];
             if (indexa >= 0) {
                 newCarta.splice(indexa, 1);
-                // alertService.error("Item already added, updating", { keepAfterRouteChange: true, autoClose: false  });
                 localStorage.setItem('carts', JSON.stringify([...newCarta, action.item]));
                 return {
                     ...state,
@@ -45,9 +43,6 @@ const reducer = (state=initialState, action) => {
                 }
                 
             } else {
-                console.log('1', action)
-                // alertService.success("New Item is being added to cart", { keepAfterRouteChange: false, autoClose: false  });
-                console.log('2', action)
                 localStorage.setItem('carts', JSON.stringify([...state.cart, action.item]));
                 return {
                     ...state,

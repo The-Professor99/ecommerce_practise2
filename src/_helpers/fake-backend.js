@@ -1,5 +1,6 @@
 import { Role } from './role';
 import { Buffer } from 'buffer';
+import { alertService } from '../_services/alert.service';
 
 // array in local storage for registered users
 const usersKey = 'users-test-ecommerce';
@@ -55,17 +56,12 @@ export function configureFakeBackend() {
     
                 if (users.find(x => x.email === user.email)) {
                     // display email already registered "email" in alert
-                    console.log("user already registered")
-                    setTimeout(() => {
-                        console.log(`
-                            <h4>Email Already Registered</h4>
-                            <p>Your email ${user.email} is already registered.</p>
-                            <p>If you don't know your password please visit the <a href="${location.origin}/account/forgot-password">forgot password</a> page.</p>
-                        `);
-                    }, 1000);
 
-                    // always return ok() response to prevent email enumeration
-                    return error('User Already Registered');
+                    return error(`
+                    <h4>Email Already Registered</h4>
+                    <p>Your email ${user.email} is already registered.</p>
+                    <p>If you don't know your password please visit the <a href="${location.origin}/account/forgot-password">forgot password</a> page.</p>
+                    `);
                 }
     
                 // assign user id and a few other properties then save
@@ -92,13 +88,13 @@ export function configureFakeBackend() {
                 // display verification email in alert
                 setTimeout(() => {
                     const verifyUrl = `${location.origin}/account/verify-email?token=${user.verificationToken}`;
-                    console.log(`
+                    alertService.info(`
                         <h4>Verification Email</h4>
                         <p>Thanks for registering!</p>
                         <p>Please click the below link to verify your email address:</p>
                         <p><a href="${verifyUrl}">${verifyUrl}</a></p>
-                        <div><strong>NOTE:</strong> The fake backend displayed this "email" so you can test without an api. A real backend would send a real email.</div>
-                    `);
+                        <div><strong>NOTE:</strong> This message is being displayed here as we are using a fake backend. A real backend would send an email.</div>
+                    `, { autoClose: false });
                 }, 1000);
 
                 return ok();
@@ -146,7 +142,6 @@ export function configureFakeBackend() {
                 
                 if (!refreshToken) return unauthorized();
 
-                console.log(users, refreshToken)
                 const user = users.find(x => x.refreshTokens.includes(refreshToken));
                 
                 if (!user) return unauthorized();
@@ -169,10 +164,8 @@ export function configureFakeBackend() {
             }
 
             function revokeToken() {
-                console.log("checking revoke token 1 ")
                 if (!isAuthenticated()) return unauthorized();
-                
-                console.log("checking revoke 2")
+
                 const refreshToken = getRefreshToken();
                 const user = users.find(x => x.refreshTokens.includes(refreshToken));
                 
@@ -214,12 +207,12 @@ export function configureFakeBackend() {
                 // display password reset email in alert
                 setTimeout(() => {
                     const resetUrl = `${location.origin}/account/reset-password?token=${user.resetToken}`;
-                    console.log(`
+                    alertService.info(`
                         <h4>Reset Password Email</h4>
                         <p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
                         <p><a href="${resetUrl}">${resetUrl}</a></p>
-                        <div><strong>NOTE:</strong> The fake backend displayed this "email" so you can test without an api. A real backend would send a real email.</div>
-                    `,);
+                        <div><strong>NOTE:</strong> This message is being displayed here as we are using a fake backend. A real backend would send an email.</div>
+                    `, { autoClose: false });
                 }, 1000);
 
                 return ok();

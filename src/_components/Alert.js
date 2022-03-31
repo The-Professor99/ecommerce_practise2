@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { alertService, AlertType } from '@/_services';
 import { useStateValue } from '@/_helpers';
+import './Alert.css'
 
 const propTypes = {
     id: PropTypes.string,
@@ -40,7 +41,7 @@ function Alert({ id, fade }) {
 
                     // auto close alert if required
                     if (alert.autoClose) {
-                        setTimeout(() => removeAlert(alert), 3000);
+                        setTimeout(() => removeAlert(alert), 5000);
                     }
                 }
             });
@@ -83,11 +84,11 @@ function Alert({ id, fade }) {
     if (!alerts.length) return null;
 
     return (
-        <div className="container">
+        <div className="container Alert">
             <div className="m-3">
                 {alerts.map((alert, index) =>
                     <div key={index} className={cssClasses(alert)}>
-                        <span dangerouslySetInnerHTML={{__html: alert.message}}></span>
+                        <div dangerouslySetInnerHTML={{__html: alert.message}}></div>
                         <a className="close ms-2" onClick={() => removeAlert(alert)}>&times;</a>
                     </div>
                 )}

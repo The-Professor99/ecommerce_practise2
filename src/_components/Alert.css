@@ -1,0 +1,7 @@
+.Alert div.alert {
+    display: flex;
+}
+.Alert .close {
+    font-size: 3rem;
+    margin-left: auto;
+}

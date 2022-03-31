@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { accountService } from '@/_services';
+import { accountService, alertService } from '@/_services';
+import { Alert } from '@/_components'
 
 import './Register.css';
 
@@ -45,16 +46,18 @@ function Register() {
         setStatus();
         accountService.register(fields)
             .then(() => {
-                console.log('Registration successful, please check your email for verification instructions');
+                alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
                 navigate('/account/login');
             })
             .catch(error => {
                 setSubmitting(false);
-                console.log(error)
+                alertService.error(error)
             });
     }
 
     return (
+        <>
+        <Alert />
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
                 <Form className='Register txt-black-white w-75 m-auto'>
@@ -142,6 +145,7 @@ function Register() {
                 </Form>
             )}
         </Formik>
+        </>
     )
 }
 

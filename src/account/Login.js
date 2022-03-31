@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { accountService, alertService } from '@/_services';
+import { Alert } from '@/_components'
 import './Login.css';
 
 function Login() {
@@ -33,11 +34,13 @@ function Login() {
             .catch(error => {
                 setSubmitting(false);
                 console.log(error)
-                alertService.error(error, { keepAfterRouteChange: false });
+                alertService.error(error);
             });
     }
 
     return (
+        <>
+        <Alert />
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
                 <Form className="Login  txt-black-white w-75 m-auto">
@@ -84,6 +87,7 @@ function Login() {
                 </Form>
             )}
         </Formik>
+        </>
     )
 }
 

@@ -33,7 +33,7 @@ function DisplayItem(props) {
                 quantity: quantity,
             }
         });
-        alertService.success("Item has being added to cart", { autoClose: false });
+        alertService.info("Item has being added to cart");
     }
     
     const removeFromBasket = (id) => {

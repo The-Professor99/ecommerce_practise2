@@ -4,8 +4,10 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { accountService } from '@/_services';
+import { Alert } from '@/_components'
 
 import './ForgotPassword.css';
+import { alertService } from '../_services/alert.service';
 
 function ForgotPassword() {    
     const initialValues = {
@@ -19,14 +21,16 @@ function ForgotPassword() {
     });
 
     function onSubmit({ email }, { setSubmitting }) {
-        // alertService.clear();
+        alertService.clear();
         accountService.forgotPassword(email)
-            .then(() => alert('Please check your email for password reset instructions'))
-            .catch(error => alert(error))
+            .then(() => alertService.success('Please check your email for password reset instructions'))
+            .catch(error => alertService.error(error))
             .finally(() => setSubmitting(false));
     }
 
     return (
+        <>
+        <Alert />
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
                 <Form className='ForgotPassword  txt-black-white w-75 m-auto'>
@@ -50,6 +54,7 @@ function ForgotPassword() {
                 </Form>
             )}
         </Formik>  
+        </>
     )
 }
 

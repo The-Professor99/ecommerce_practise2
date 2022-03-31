@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { accountService } from '@/_services';
+import { Alert } from '@/_components'
+import { alertService } from '../_services/alert.service';
 
 function ResetPassword() {
     const TokenStatus = {
@@ -55,20 +57,21 @@ function ResetPassword() {
         });
 
         function onSubmit({ password, confirmPassword }, { setSubmitting }) {
-            // alertService.clear();
+            alertService.clear();
             accountService.resetPassword({ token, password, confirmPassword })
                 .then(() => {
-                    alert('Password reset successful, you can now login', { keepAfterRouteChange: true });
+                    alertService('Password reset successful, you can now login', { keepAfterRouteChange: true });
                     navigate('/account/login');
                 })
                 .catch(error => {
                     setSubmitting(false);
-                    console.log(error)
-                    // alertService.error(error);
+                    alertService.error(error);
                 });
         }
 
         return (
+            <>
+            <Alert />
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ errors, touched, isSubmitting }) => (
                     <Form className="ResetPassword  txt-black-white w-75 m-auto">
@@ -120,6 +123,7 @@ function ResetPassword() {
                     </Form>
                 )}
             </Formik>
+            </>
         );
     }
 

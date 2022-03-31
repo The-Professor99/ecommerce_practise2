@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { accountService } from '@/_services';
+import { Alert } from '@/_components'
+import { alertService } from '../_services/alert.service';
 
 function VerifyEmail() {
     const EmailStatus = {
@@ -20,7 +22,7 @@ function VerifyEmail() {
 
         accountService.verifyEmail(token)
             .then(() => {
-                console.log('Verification successful, you can now login');
+                alertService.success('Verification successful, you can now login',  { keepAfterRouteChange: true });
                 navigate('/account/login');
             })
             .catch(() => {
@@ -38,10 +40,13 @@ function VerifyEmail() {
     }
 
     return (
+        <>
+        <Alert />
         <div className='w-75 m-auto'>
             <h3 className="card-header txt-black-white">Verify Email</h3>
             <div className="card-body txt-black-white">{getBody()}</div>
         </div>
+        </>
     )
 }
 
