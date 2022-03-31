@@ -27,7 +27,6 @@ function ResetPassword() {
 
         let token = searchParams.get("token") || '';
 
-        console.log(token)
         // remove token from url to prevent http referer leakage
         navigate(location.pathname, { replace: true });
 
@@ -60,7 +59,7 @@ function ResetPassword() {
             alertService.clear();
             accountService.resetPassword({ token, password, confirmPassword })
                 .then(() => {
-                    alertService('Password reset successful, you can now login', { keepAfterRouteChange: true });
+                    alertService.success('Password reset successful, you can now login', { keepAfterRouteChange: true });
                     navigate('/account/login');
                 })
                 .catch(error => {

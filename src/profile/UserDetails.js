@@ -6,8 +6,6 @@ import { useStateValue } from '@/_helpers';
 function UserDetails() {
   const [{ user}] = useStateValue();
 
-  console.log(user, "checking cart user")
-
   return (
     <div className='UserDetails'>
       <h3 className='txt-dark-blue'>Hello {user.firstName} {user.lastName}</h3>

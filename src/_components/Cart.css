@@ -46,6 +46,10 @@ p.card-texts {
     font-weight: bold;
     margin-left: 1.5rem;
   }
+  .cart-orders-display {
+    box-shadow: var(--box-shadow2);
+    background-color: var(--background);
+}
 .cart-orders {
     border-radius: 52%;
     font-weight: bold;
@@ -80,10 +84,6 @@ p.card-texts {
   
 @media all and (min-width: 992px) {
 
-  .cart-orders-display {
-    box-shadow: var(--box-shadow2);
-    background-color: var(--background);
-}
 
 .cart-orders-display {
     margin: auto;

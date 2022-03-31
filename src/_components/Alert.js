@@ -89,7 +89,7 @@ function Alert({ id, fade }) {
                 {alerts.map((alert, index) =>
                     <div key={index} className={cssClasses(alert)}>
                         <div dangerouslySetInnerHTML={{__html: alert.message}}></div>
-                        <a className="close ms-2" onClick={() => removeAlert(alert)}>&times;</a>
+                        <a className="close" onClick={() => removeAlert(alert)}>&times;</a>
                     </div>
                 )}
             </div>

@@ -13,13 +13,6 @@ const dataUrl = 'https://fakestoreapi.com';
 function Women() {
     const { isLoading, data, error } = useFetch(`${dataUrl}/products/category/women's clothing`);
     let [searchParams, setSearchParams] = useSearchParams();
-    // const myRef = useRef(null)
-    // const executeScroll = () => myRef.current.scrollIntoView()    
-   
-  
-    // useEffect(() => {
-    //   executeScroll();
-    // });
     
     if (error) {
       return (

@@ -20,14 +20,6 @@ configureFakeBackend();
 accountService.refreshToken().finally(startApp);
 
 function startApp() {
-  // const [{ user } , dispatch] = useStateValue(); 
-  // const userDetail = accountService.userValue;
-  // console.log(userDetail, user, "1");
-  // dispatch({
-  //   type: 'SET_USER',
-  //   user: userDetail
-  // });
-  // console.log(userDetail, user, "2");
   ReactDOM.render(
     <BrowserRouter>
       <Routes>

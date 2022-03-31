@@ -1,7 +1,9 @@
 .Alert div.alert {
     display: flex;
+    align-items: center;
 }
 .Alert .close {
     font-size: 3rem;
     margin-left: auto;
+    text-decoration: none;
 }

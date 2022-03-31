@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Navigate, useLocation } from "react-router-dom";
-import { SideBar } from '@/_components';
+import { SideBar, Alert } from '@/_components';
 import { useStateValue } from '@/_helpers';
 
 function Profile() {
@@ -14,6 +14,7 @@ function Profile() {
             <div className="row flex-nowrap">
                 <SideBar />
                 <div className="col p-4">
+                    <Alert />
                     <Outlet />
                 </div>
             </div>

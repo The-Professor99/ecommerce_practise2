@@ -61,7 +61,6 @@ function Cart() {
 
   const showTotal = () => {
         let total = getCartTotal(cart);
-        console.log(total)
         alert(`Your Total Purchase is: ${total.toFixed(2)}`)
   }
   return (

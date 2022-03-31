@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { accountService } from '@/_services';
+import { accountService, alertService } from '@/_services';
 
 import { useStateValue } from '@/_helpers';
 
@@ -17,7 +17,7 @@ function Settings() {
         accountService.delete(user.id)
         .then(() => {
           accountService.logout();
-          alert("Account Deleted Successfully");
+          alertService.warn("Account Deleted Successfully", { keepAfterRouteChange: true });
           navigate('/account/login');
         })
       }

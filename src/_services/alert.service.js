@@ -52,6 +52,5 @@ function alert(alert) {
 
 // clear alerts
 function clear(id = defaultId) {
-    console.log("got here")
     alertSubject.next({ id });
 }

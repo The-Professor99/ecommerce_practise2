@@ -46,9 +46,6 @@ function Navbar(props) {
 
   const navigate = useNavigate();
 
-//   const userDetail = accountService.userValue;
-//   console.log(userDetail, user, "1");
-
   function handleAuthentication() {
     accountService.logout();
     navigate('/account/login');

@@ -66,11 +66,15 @@ export function configureFakeBackend() {
     
                 // assign user id and a few other properties then save
                 user.id = newUserId();
-                if (user.id === 1) {
+                let temporaryId = user.id + 1;
+                // if (user.id === 1) {
+                if (temporaryId === 1) {
                     // first registered user is an admin
                     // This is because we are using a fake backend system.
                     // For a real backend system, a registration page may be made 
                     // for admin registration.
+                    // However, for now, no user is being assigned an id of 1. 
+                    // for the sake of this test practice.
                     user.role = Role.Admin;
                 } else {
                     user.role = Role.User;
@@ -290,7 +294,6 @@ export function configureFakeBackend() {
                 // let buf = Buffer(tokenPayload.toString())
                 let tokenJsonStr = JSON.stringify(tokenPayload);
                 let tokenJsonB64 = Buffer.from(tokenJsonStr).toString("base64");
-                console.log("checking jwt: ", tokenJsonB64)
                 return `fake-jwt-token.${tokenJsonB64}`;
             }
 

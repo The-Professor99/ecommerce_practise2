@@ -9,7 +9,6 @@ const userSubject = new BehaviorSubject(null);
 const baseUrl = `${config.apiUrl}/accounts`;
 
 const userKey = 'user-account-test-ecommerce';
-// let userDetails = JSON.parse(localStorage.getItem(userKey)) || [];0
 
 export const accountService = {
     register,
@@ -93,7 +92,6 @@ function refreshToken() {
 function startRefreshTokenTimer() {
 
     const jwtToken = JSON.parse(Buffer.from(userSubject.value.jwtToken.split('.')[1], 'base64'))
-    console.log("checking startrefresh: ", jwtToken)
 
 
     // set a timeout to refresh the token a minute before it expires
