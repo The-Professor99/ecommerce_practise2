@@ -2,8 +2,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import useFetch from "react-fetch-hook";
 
-import { InputBar, SelectBar, DisplayItems, ErrorPage, Spinner, AdBanner } from '@/_components';
-
+import { InputBar, SelectBar, DisplayItems, ErrorPage, Spinner, AdBanner, Alert } from '@/_components';
+import { alertService } from '@/_services';
 import './Collections.css';
 
 const dataUrl = 'https://fakestoreapi.com';
@@ -16,12 +16,16 @@ function Collections() {
 
     if (error) {
       return (
+        <>
+        <AdBanner />
         <ErrorPage />
+        </>
       )
     }
     return (
         <>
         <AdBanner />
+        <Alert />
         <h2 className='txt-dark-blue'>All Collections</h2>
         <div className='search-bar input-group'>
           <InputBar />

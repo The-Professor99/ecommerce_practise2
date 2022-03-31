@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { accountService } from '@/_services';
+import { accountService, alertService } from '@/_services';
 import './Login.css';
 
 function Login() {
@@ -24,7 +24,7 @@ function Login() {
     });
 
     function onSubmit({ email, password }, { setSubmitting }) {
-        // alertService.clear();
+        alertService.clear();
         accountService.login(email, password)
             .then(() => {
                 const { from } = location.state || { from: { pathname: "/" } };
@@ -33,7 +33,7 @@ function Login() {
             .catch(error => {
                 setSubmitting(false);
                 console.log(error)
-                // alertService.error(error);
+                alertService.error(error, { keepAfterRouteChange: false });
             });
     }
 

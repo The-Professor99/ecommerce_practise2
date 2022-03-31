@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import useLocalStorage from 'use-local-storage';
 
 import './App.css';
-import { Navbar, Footer, AdBanner } from '@/_components';
+import { Navbar, Footer, AdBanner, Alert } from '@/_components';
 import { reducer, StateProvider, initialState, useStateValue } from '@/_helpers';
 
 function App() {

@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStateValue, getCartTotal } from '@/_helpers';
+import { alertService } from '@/_services';
 
 import './Cart.css';
 import deleteIcon from '../images/icon-delete.svg';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -16,7 +19,8 @@ function CartItem({ item }) {
             item: {
                 id: item.id
             }
-        })
+        });
+        alertService.warn("Item has been removed from cart");
     }
     return (
         <div className='card-details'>

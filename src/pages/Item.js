@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from "react-fetch-hook";
 
-import { DisplayItem, ErrorPage, Spinner, AdBanner } from '@/_components';
+import { DisplayItem, ErrorPage, Spinner, AdBanner, Alert } from '@/_components';
 
 import './Item.css'
 
@@ -23,6 +23,7 @@ function Item() {
   return (
     <>
     <AdBanner />
+    <Alert />
     <div className='Item'>
     {isLoading ? (
       <Spinner />) : (

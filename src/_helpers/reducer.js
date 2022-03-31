@@ -1,3 +1,5 @@
+import { alertService } from '@/_services';
+
 let localCart;
 let localUser;
 if (localStorage.getItem('carts')) {
@@ -17,7 +19,8 @@ if (localStorage.getItem('user-account-test-ecommerce')) {
 
 export const initialState = {
     cart: localCart,
-    user: localUser
+    user: localUser,
+    alerts: []
 };
 
 // Selector
@@ -34,7 +37,7 @@ const reducer = (state=initialState, action) => {
             let newCarta = [...state.cart];
             if (indexa >= 0) {
                 newCarta.splice(indexa, 1);
-                alert("Item already added, updating")
+                // alertService.error("Item already added, updating", { keepAfterRouteChange: true, autoClose: false  });
                 localStorage.setItem('carts', JSON.stringify([...newCarta, action.item]));
                 return {
                     ...state,
@@ -42,7 +45,9 @@ const reducer = (state=initialState, action) => {
                 }
                 
             } else {
-                alert("New Item is being added to cart")
+                console.log('1', action)
+                // alertService.success("New Item is being added to cart", { keepAfterRouteChange: false, autoClose: false  });
+                console.log('2', action)
                 localStorage.setItem('carts', JSON.stringify([...state.cart, action.item]));
                 return {
                     ...state,
@@ -69,6 +74,23 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 user: action.user
+            }
+
+        case 'UPDATE_ALERTS':
+            return {
+                ...state,
+                alerts: [...state.alerts, action.alert]
+            }
+        case 'SELECT_KEEPS':
+            return {
+                ...state,
+                alerts: action.alerts
+            }
+        case 'REMOVE_ALERT':
+            const filteredAlerts = state.alerts.filter(x => x !== action.alert);
+            return {
+                ...state,
+                alerts: filteredAlerts
             }
         default: 
             return state;

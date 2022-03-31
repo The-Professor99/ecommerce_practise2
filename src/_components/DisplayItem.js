@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 
 import { useStateValue } from '@/_helpers';
+import { alertService } from '@/_services';
 
 import nextIcon from '../images/icon-next.svg';
 import prevIcon from '../images/icon-previous.svg';
@@ -32,6 +33,7 @@ function DisplayItem(props) {
                 quantity: quantity,
             }
         });
+        alertService.success("Item has being added to cart", { autoClose: false });
     }
     
     const removeFromBasket = (id) => {
