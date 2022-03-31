@@ -46,19 +46,15 @@ function Navbar(props) {
 
   const navigate = useNavigate();
 
-  const userDetail = accountService.userValue;
-  console.log(userDetail, user, "1");
+//   const userDetail = accountService.userValue;
+//   console.log(userDetail, user, "1");
 
   function handleAuthentication() {
-    console.log("checking hey1")
     accountService.logout();
-    console.log("checking hey2")
     navigate('/account/login');
   }
-//   useEffect(() => {
-// }, []);
-  useEffect(() => {
 
+  useEffect(() => {
     const subscription = accountService.user.subscribe(userDetail => {
         {
         dispatch({
@@ -68,7 +64,6 @@ function Navbar(props) {
         }});
     return subscription.unsubscribe;
   }, []);
-  console.log(userDetail, user, "2");
 
   return (
     <header className='Navbar'>
@@ -88,7 +83,7 @@ function Navbar(props) {
                 </span>
             </button>
             <NavLinks />
-            <div className='theme-toggle-container me-2'>
+            <div className='theme-toggle-container me-2 mt-4'>
                 <button 
                 className='btn btn-primary' onClick={() => {props.switchTheme()}}>
                 {!props.darkTheme ? (
@@ -193,7 +188,7 @@ function Navbar(props) {
                         <div 
                         className="dropdown-menu dropdowns dropdown1" 
                         aria-labelledby="dropdownMenuButton">
-                            <Link className='dropdown-item' to='/profile'>
+                            <Link className='dropdown-item' to='/profile/'>
                                 Visit Profile
                             </Link>
                             {user.role === Role.Admin &&

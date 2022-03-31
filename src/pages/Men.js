@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import useFetch from "react-fetch-hook";
 
-import { InputBar, DisplayItems, ErrorPage, Spinner } from '@/_components';
+import { InputBar, DisplayItems, ErrorPage, Spinner, AdBanner } from '@/_components';
 
 import './Men.css';
 
@@ -29,6 +29,7 @@ function Men() {
     
     return (
         <>
+        <AdBanner />
         <h2 className='txt-dark-blue'>Men's Clothing</h2>
         <div className='search-bar'>
           <InputBar />

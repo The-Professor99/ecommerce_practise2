@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { Men, Women, About, Contact, NotFound, Collections, Item } from '@/pages';
 import { Login, Register, Account, ForgotPassword, VerifyEmail  } from '@/account';
-import { Profile, UserDetails } from '@/profile';
+import { Profile, UserDetails, UserOrders, UserAddress, Settings } from '@/profile';
 
 import { configureFakeBackend, useStateValue } from '@/_helpers';
 import { accountService } from './_services';
@@ -37,7 +37,7 @@ function startApp() {
           <Route path='women' element={<Women />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
-          <Route path='test' element={<Register />} />
+          <Route path='test' element={<Settings />} />
           <Route path='items/:itemId' element={<Item />} />
           <Route path="*" element={<NotFound />} />
           <Route element={<Account />} >
@@ -46,9 +46,16 @@ function startApp() {
             <Route path='/account/forgot-password' element={<ForgotPassword />} />
             <Route path='/account/verify-email' element={<VerifyEmail />} />
           </Route>
-          <Route path='/profile' element={<Profile />} >
+          <Route path='/profile/' element={<Profile />} >
+            
+            {/* <Route path="/profile/" element={<Navigate replace to="/profile/orders" />} /> */}
+            {/* <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} /> */}
             <Route index element={<UserDetails />} />
+            <Route path='orders' element={<UserOrders />} />
+            <Route path='shipping-info' element={<UserAddress />} />
+            <Route path='settings' element={<Settings />} />
           </Route>
+          {/* <Route path="/profile" element={<Navigate replace to="/profile/" />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>,

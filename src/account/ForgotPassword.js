@@ -19,8 +19,8 @@ function ForgotPassword() {
     function onSubmit({ email }, { setSubmitting }) {
         alertService.clear();
         accountService.forgotPassword(email)
-            .then(() => alertService.success('Please check your email for password reset instructions'))
-            .catch(error => alertService.error(error))
+            .then(() => alert('Please check your email for password reset instructions'))
+            .catch(error => alert(error))
             .finally(() => setSubmitting(false));
     }
 

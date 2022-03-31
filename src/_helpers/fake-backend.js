@@ -29,6 +29,8 @@ export function configureFakeBackend() {
                         return refreshToken();
                     case url.endsWith('/accounts/revoke-token') && method === 'POST':
                         return revokeToken();
+                    case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
+                        return deleteUser();
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -122,6 +124,7 @@ export function configureFakeBackend() {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
+                    orders: [],
                     jwtToken: generateJwtToken(user)
                 });
             }
@@ -149,6 +152,7 @@ export function configureFakeBackend() {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
+                    orders: [],
                     jwtToken: generateJwtToken(user)
                 })
             }
@@ -165,6 +169,22 @@ export function configureFakeBackend() {
                 user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
                 localStorage.setItem(usersKey, JSON.stringify(users));
 
+                return ok();
+            }
+
+            function deleteUser() {
+                if (!isAuthenticated()) return unauthorized();
+    
+                let user = users.find(x => x.id === idFromUrl());
+
+                // users can delete own account and admins can delete any account
+                if (user.id !== currentUser().id && !isAuthorized(Role.Admin)) {
+                    return unauthorized();
+                }
+
+                // delete user then save
+                users = users.filter(x => x.id !== idFromUrl());
+                localStorage.setItem(usersKey, JSON.stringify(users));
                 return ok();
             }
 
@@ -234,6 +254,17 @@ export function configureFakeBackend() {
                 if (tokenExpired) return;
                 const user = users.find(x => x.id === jwtToken.id);
                 return user;
+            }
+
+            function idFromUrl() {
+                const urlParts = url.split('/');
+                return parseInt(urlParts[urlParts.length - 1]);
+            }
+
+            function isAuthorized(role) {
+                const user = currentUser();
+                if (!user) return false;
+                return user.role === role;
             }
         });
     }

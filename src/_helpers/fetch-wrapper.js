@@ -51,6 +51,7 @@ async function put(url, body) {
 async function _delete(url) {
     const requestOptions= {
         method: 'DELETE',
+        headers: authHeader(url)
     };
     const response = await fetch(url, requestOptions);
     return handleResponse(response);

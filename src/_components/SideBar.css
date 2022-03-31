@@ -1,0 +1,17 @@
+.sidebar-svg {
+    width: 3rem;
+    height: 2rem;
+}
+
+.SideBar .nav-link.active {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color2);
+    /* padding-right: ; */
+}
+
+.SideBar .nav-item {
+    width: 100%;
+}
+.SideBar .nav-link:not(.active) > span:hover {
+    color:  var(--primary-color2);
+}

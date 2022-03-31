@@ -9,8 +9,7 @@ import { reducer, StateProvider, initialState, useStateValue } from '@/_helpers'
 function App() {
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [darkTheme, setTheme] = useLocalStorage('darkTheme', defaultDark ? true : false);
-  
-  console.log(useStateValue(), "usesta"); 
+   
 
   const switchTheme = () => {
     setTheme(!darkTheme)
@@ -30,7 +29,7 @@ function App() {
             darkTheme={darkTheme}
             switchTheme={() => switchTheme(darkTheme)} />
         <main>
-          <AdBanner />
+          {/* <AdBanner /> */}
           <div>
             <Outlet className="outlet" />
           </div>

@@ -17,6 +17,8 @@ export const accountService = {
     login,
     refreshToken,
     logout,
+    delete: _delete,
+    forgotPassword,
     user: userSubject.asObservable(),
     get userValue () { return userSubject.value }
 };
@@ -41,7 +43,6 @@ function login(email, password) {
 }
 
 function logout() {
-    console.log("check logging out")
     // revoke token, stop refresh timer, publish null to user subscribers and redirect to login page
     fetchWrapper.post(`${baseUrl}/revoke-token`, {});
     stopRefreshTokenTimer();
@@ -50,6 +51,13 @@ function logout() {
     return;
 }
 
+function _delete(id) {
+    return fetchWrapper.delete(`${baseUrl}/${id}`)
+}
+
+function forgotPassword(email) {
+    return fetchWrapper.post(`${baseUrl}/forgot-password`, { email });
+}
 
 // helper functions
 

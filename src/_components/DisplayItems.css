@@ -3,7 +3,7 @@
     width: 45%;
     margin: 0.5rem;
 }
-.DisplayItems .card {
+.DisplayItems .card, .UserDetails .card, .Settings .card {
     margin-top: 1.5rem;
     padding: 0.2rem;
     box-shadow: var(--box-shadow);

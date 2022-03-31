@@ -6,3 +6,5 @@ export * from './ErrorPage';
 export * from './Spinner';
 export * from './AdBanner';
 export * from './DisplayItem';
+export * from './SideBar';
+export * from './InProgress';
