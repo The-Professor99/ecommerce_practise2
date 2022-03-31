@@ -1,9 +1,14 @@
 import React from 'react';
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { SideBar } from '@/_components';
+import { useStateValue } from '@/_helpers';
 
 function Profile() {
+    const [{ user}] = useStateValue();
+    const location = useLocation();
+
     return (
+        user ? (
         <>
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -14,6 +19,9 @@ function Profile() {
             </div>
         </div>
         </>
+        ) : (
+            <Navigate to="/account/login" replace state={{ from: location }} />
+        )
     )
 }
 

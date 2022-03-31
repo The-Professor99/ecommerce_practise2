@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { accountService } from '@/_services';
@@ -9,6 +9,7 @@ function Login() {
 
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const initialValues = {
         email: '',

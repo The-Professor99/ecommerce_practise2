@@ -13,30 +13,35 @@ export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         return new Promise((resolve, reject) => {
-            // wrap in timeout to simulate server api call
-            setTimeout(handleRoute, 5000);
+            handleRoute();
 
             function handleRoute() {
+                if (!opts) {
+                    return realFetch(url)
+                        .then(response => resolve(response))
+                        .catch(error => reject(error));
+                }
                 let { method } = opts;
                 switch (true) {
                     case url.endsWith('/accounts/register') && method === 'POST':
-                        return register();
+                        // wrap in timeout to simulate server api call
+                        return setTimeout(register, 2500);
                     case url.endsWith('/accounts/verify-email') && method === 'POST':
-                        return verifyEmail();
+                        return setTimeout(verifyEmail, 2500);
                     case url.endsWith('/accounts/login') && method === 'POST':
-                        return login();
+                        return setTimeout(login, 2500);
                     case url.endsWith('/accounts/refresh-token') && method === 'POST':
-                        return refreshToken();
+                        return setTimeout(refreshToken, 2500);
                     case url.endsWith('/accounts/revoke-token') && method === 'POST':
-                        return revokeToken();
+                        return setTimeout(revokeToken, 2500);
                     case url.endsWith('/accounts/forgot-password') && method === 'POST':
-                        return forgotPassword();
+                        return setTimeout(forgotPassword, 2500);
                     case url.endsWith('/accounts/validate-reset-token') && method === 'POST':
-                        return validateResetToken();
+                        return setTimeout(validateResetToken, 2500);
                     case url.endsWith('/accounts/reset-password') && method === 'POST':
-                        return resetPassword();
+                        return setTimeout(resetPassword, 2500);
                     case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
-                        return deleteUser();
+                        return setTimeout(deleteUser, 2500);
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
