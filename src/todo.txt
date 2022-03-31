@@ -10,13 +10,10 @@ to show data from localstorage instead of fetching or both
 setting up service worker
 to keep refreshing for data after some intervals upon error.
 use scoped-css
-point ad to jumia
 persist cart to user email to share across devices or send to back end storage
 and retrieve upon login.
 protect routes
 check screenshots
-set delete user in settings.
-change alerts and console messages to alert service.
 use place/maps api google for address.
 Restrict google api key before moving to production
 shipping info should go to check out. that is, to be added on check out.

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import useFetch from "react-fetch-hook";
 
 import { InputBar, SelectBar, DisplayItems, ErrorPage, Spinner, AdBanner, Alert } from '@/_components';
-import { alertService } from '@/_services';
 import './Collections.css';
 
 const dataUrl = 'https://fakestoreapi.com';
@@ -18,6 +17,7 @@ function Collections() {
       return (
         <>
         <AdBanner />
+        <Alert />
         <ErrorPage />
         </>
       )

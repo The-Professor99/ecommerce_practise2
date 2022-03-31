@@ -8,18 +8,6 @@
     display: none;
   }
   
-  .switch-image-container {
-    position: relative;
-    bottom: 13rem;
-    /* width: 2rem; */
-    z-index: 1;
-    /* background: wheat; */
-    /* border-radius: 50%; */
-    /* margin-left: 1rem; */
-    display: flex;
-    height: 2rem;
-    align-items: center;
-  }
   
   .switch-image {
     text-align: center;

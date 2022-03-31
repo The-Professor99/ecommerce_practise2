@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className='Footer'>
       <div className='attributions'>
-        <p>Illustrations from <a href='https://undraw.co/illustrations'>undraw.co</a></p>
+        <p>Illustrations from <a href='https://undraw.co/illustrations' target="_blank">undraw.co</a></p>
         <p>Copyright © {new Date().getFullYear()}{" "} 
             <span><a href="https://ihechifestus9.web.app/" target="_blank">The Professor 99</a>.</span>
         </p>

@@ -29,7 +29,6 @@ function startApp() {
           <Route path='women' element={<Women />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
-          <Route path='test' element={<Settings />} />
           <Route path='items/:itemId' element={<Item />} />
           <Route path="*" element={<NotFound />} />
           <Route element={<Account />} >
@@ -40,15 +39,11 @@ function startApp() {
             <Route path='/account/reset-password' element={<ResetPassword />} />
           </Route>
           <Route path='/profile/' element={<Profile />} >
-            
-            {/* <Route path="/profile/" element={<Navigate replace to="/profile/orders" />} /> */}
-            {/* <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} /> */}
             <Route index element={<UserDetails />} />
             <Route path='orders' element={<UserOrders />} />
             <Route path='shipping-info' element={<UserAddress />} />
             <Route path='settings' element={<Settings />} />
           </Route>
-          {/* <Route path="/profile" element={<Navigate replace to="/profile/" />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>,
