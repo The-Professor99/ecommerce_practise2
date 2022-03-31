@@ -19,6 +19,8 @@ export const accountService = {
     logout,
     delete: _delete,
     forgotPassword,
+    validateResetToken,
+    resetPassword,
     user: userSubject.asObservable(),
     get userValue () { return userSubject.value }
 };
@@ -57,6 +59,14 @@ function _delete(id) {
 
 function forgotPassword(email) {
     return fetchWrapper.post(`${baseUrl}/forgot-password`, { email });
+}
+
+function validateResetToken(token) {
+    return fetchWrapper.post(`${baseUrl}/validate-reset-token`, { token });
+}
+
+function resetPassword({ token, password, confirmPassword }) {
+    return fetchWrapper.post(`${baseUrl}/reset-password`, { token, password, confirmPassword });
 }
 
 // helper functions

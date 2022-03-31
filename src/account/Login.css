@@ -1,4 +1,4 @@
-.Login button.btn {
+.Login button.btn, .ResetPassword button.btn {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }

@@ -29,6 +29,12 @@ export function configureFakeBackend() {
                         return refreshToken();
                     case url.endsWith('/accounts/revoke-token') && method === 'POST':
                         return revokeToken();
+                    case url.endsWith('/accounts/forgot-password') && method === 'POST':
+                        return forgotPassword();
+                    case url.endsWith('/accounts/validate-reset-token') && method === 'POST':
+                        return validateResetToken();
+                    case url.endsWith('/accounts/reset-password') && method === 'POST':
+                        return resetPassword();
                     case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
                         return deleteUser();
                     default:
@@ -185,6 +191,63 @@ export function configureFakeBackend() {
                 // delete user then save
                 users = users.filter(x => x.id !== idFromUrl());
                 localStorage.setItem(usersKey, JSON.stringify(users));
+                return ok();
+            }
+
+            function forgotPassword() {
+                const { email } = body();
+                const user = users.find(x => x.email === email);
+                
+                // always return ok() response to prevent email enumeration
+                if (!user) return error("User Email Not Found");
+                
+                // create reset token that expires after 24 hours
+                user.resetToken = new Date().getTime().toString();
+                user.resetTokenExpires = new Date(Date.now() + 24*60*60*1000).toISOString();
+                localStorage.setItem(usersKey, JSON.stringify(users));
+
+                // display password reset email in alert
+                setTimeout(() => {
+                    const resetUrl = `${location.origin}/account/reset-password?token=${user.resetToken}`;
+                    console.log(`
+                        <h4>Reset Password Email</h4>
+                        <p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
+                        <p><a href="${resetUrl}">${resetUrl}</a></p>
+                        <div><strong>NOTE:</strong> The fake backend displayed this "email" so you can test without an api. A real backend would send a real email.</div>
+                    `,);
+                }, 1000);
+
+                return ok();
+            }
+
+            function validateResetToken() {
+                const { token } = body();
+                const user = users.find(x =>
+                    !!x.resetToken && x.resetToken === token &&
+                    new Date() < new Date(x.resetTokenExpires)
+                );
+                
+                if (!user) return error('Invalid token');
+                
+                return ok();
+            }
+
+            function resetPassword() {
+                const { token, password } = body();
+                const user = users.find(x =>
+                    !!x.resetToken && x.resetToken === token &&
+                    new Date() < new Date(x.resetTokenExpires)
+                );
+                
+                if (!user) return error('Invalid token');
+                
+                // update password and remove reset token
+                user.password = password;
+                user.isVerified = true;
+                delete user.resetToken;
+                delete user.resetTokenExpires;
+                localStorage.setItem(usersKey, JSON.stringify(users));
+
                 return ok();
             }
 

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import { accountService } from '@/_services';
+
 import './ForgotPassword.css';
 
 function ForgotPassword() {    
@@ -17,7 +19,7 @@ function ForgotPassword() {
     });
 
     function onSubmit({ email }, { setSubmitting }) {
-        alertService.clear();
+        // alertService.clear();
         accountService.forgotPassword(email)
             .then(() => alert('Please check your email for password reset instructions'))
             .catch(error => alert(error))
