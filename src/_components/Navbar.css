@@ -12,6 +12,7 @@
     width: 60%;
     top: 0;
     padding: 2.3rem 1.8rem;
+    overflow: scroll;
 }
 
 .phone>.navbar-toggler {

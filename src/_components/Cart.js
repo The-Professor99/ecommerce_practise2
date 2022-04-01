@@ -40,7 +40,7 @@ function CartItem({ item }) {
                     <span>
                         {item.quantity}
                     </span> 
-                    <span className="txt-black-white txt-700 ms-4">
+                    <span className="txt-black-white txt-700 ms-2">
                        $ {(item.price * item.quantity).toFixed(2)}
                     </span>
                 </p>

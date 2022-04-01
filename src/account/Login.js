@@ -28,7 +28,7 @@ function Login() {
         alertService.clear();
         accountService.login(email, password)
             .then(() => {
-                const { from } = location.state || { from: { pathname: "/" } };
+                const { from } = location.state || { from: { pathname: "/profile/" } };
                 navigate(from);
             })
             .catch(error => {

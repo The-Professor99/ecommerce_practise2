@@ -16,7 +16,11 @@ function Item() {
 
   if (error) {
     return (
+      <>
+      <AdBanner />
+      <Alert />
       <ErrorPage />
+      </>
       )
   }
 

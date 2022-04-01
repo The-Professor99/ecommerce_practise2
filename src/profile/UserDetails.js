@@ -16,7 +16,7 @@ function UserDetails() {
           <div className="card-text">
             <strong>Note: </strong> 
             <p>This functionality is still a work in progress</p>
-            <p>You have completed {user.orders} orders</p>
+            <p>You have completed {user.orders?.length} orders</p>
           </div>
           <Link to="/profile/orders" className="btn btn-primary">View All Orders</Link>
         </div>

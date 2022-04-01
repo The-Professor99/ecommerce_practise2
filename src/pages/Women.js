@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import useFetch from "react-fetch-hook";
 
-import { InputBar, DisplayItems, ErrorPage, Spinner, AdBanner } from '@/_components';
+import { InputBar, DisplayItems, ErrorPage, Spinner, AdBanner, Alert } from '@/_components';
 
 import './Women.css';
 
@@ -16,13 +16,18 @@ function Women() {
     
     if (error) {
       return (
+        <>
+        <AdBanner />
+        <Alert />
         <ErrorPage />
+        </>
       )
     }
     
     return (
         <>
         <AdBanner />
+        <Alert />
         <h2 className='txt-dark-blue'>Women's Clothing</h2>
         <div className='search-bar'>
           <InputBar />

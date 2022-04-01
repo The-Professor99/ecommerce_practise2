@@ -138,7 +138,7 @@ function ResetPassword() {
     }
 
     return (
-        <div>
+        <div className='w-75 m-auto'>
             <h3 className="card-header txt-black-white text-center">Reset Password</h3>
             <div className="card-body txt-black-white">{getBody()}</div>
         </div>
