@@ -80,8 +80,6 @@ function Login() {
                                 <Link to="/account/forgot-password" className="btn btn-link pr-0">Forgot Password?</Link>
                             </div>
                         </div>
-                        <Link to='/account/verify-email?token=1648763924976'>Verify</Link>
-                        <Link to='/account/reset-password?token=1648763486864'>Reset Password</Link>
                     </div>
                 </Form>
             )}
