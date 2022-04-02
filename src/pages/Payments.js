@@ -53,8 +53,6 @@ function Payments() {
           return;
         }    
 
-        console.log(stripe, elements)
-
         if (!cart?.length) {
             setProcessing(false);
             alertService.error("No item in cart!");

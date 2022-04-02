@@ -8,7 +8,6 @@ import { DisplayOrders, NoOrder } from '@/_components';
 
 function UserOrders() {
   const [{ user }] = useStateValue();
-  console.log(user.orders, 'orders11')
   return (
     user.orders?.length ? (
       <>

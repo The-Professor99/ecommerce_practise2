@@ -47,7 +47,6 @@ function DisplayOrders(props) {
             selector: row => <Link to={`/items/${row.linkId}`} >View Item</Link>,
         }
     ];
-    // console.log(props)
     const dataCopy = JSON.parse(JSON.stringify(props.value));
 
     let i;
