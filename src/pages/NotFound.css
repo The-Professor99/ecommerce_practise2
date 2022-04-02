@@ -1,18 +1,18 @@
 
-.NotFound, .About, .Contact {
+.NotFound, .About, .Contact, .Payments {
     color: var(--text-primary);
 }
 @media all and (min-width: 992px) {
-    .NotFound .flex, .About .flex, .Contact .flex {
+    .NotFound .flex, .About .flex, .Contact .flex, .Payments .flex {
         display: flex;
         justify-content: space-around;
         flex-direction: row;
         margin-bottom: 2rem;
     }
-    .NotFound .image-container, .About .image-container, .Contact .image-container {
+    .NotFound .image-container, .About .image-container, .Contact .image-container, .Payments .image-container {
         width: 50%;;
     }
-    .NotFound article, .About article, .Contact  article {
+    .NotFound article, .About article, .Contact  article,  .Payments section {
         width: 40%;
         align-self: center;
     }

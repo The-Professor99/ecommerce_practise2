@@ -19,3 +19,5 @@ Restrict google api key before moving to production
 shipping info should go to check out. that is, to be added on check out.
 protect route of admin
 checkout if to use dompurify for dangerouslysethtml
+https://stripe.com/docs/checkout/quickstart?client=next use stripe checkout page for
+checkout instead.

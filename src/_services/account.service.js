@@ -20,6 +20,8 @@ export const accountService = {
     forgotPassword,
     validateResetToken,
     resetPassword,
+    createPaymentIntent,
+    updateOrders,
     user: userSubject.asObservable(),
     get userValue () { return userSubject.value }
 };
@@ -66,6 +68,23 @@ function validateResetToken(token) {
 
 function resetPassword({ token, password, confirmPassword }) {
     return fetchWrapper.post(`${baseUrl}/reset-password`, { token, password, confirmPassword });
+}
+
+function createPaymentIntent(params) {
+    return fetchWrapper.post(`${baseUrl}/create-payment-intent`, params);
+}
+
+function updateOrders({cart, user}) {
+    return fetchWrapper.post(`${baseUrl}/update-orders`, {cart, user})
+        .then(user => {
+            // publish user to subscribers and start timer to refresh token
+            userSubject.next(user);
+            localStorage.setItem(userKey, JSON.stringify(user) || null);
+            return user;
+        })
+        .catch(error => {
+            console.log(error)
+        });
 }
 
 // helper functions

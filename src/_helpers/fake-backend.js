@@ -41,6 +41,10 @@ export function configureFakeBackend() {
                         return setTimeout(validateResetToken, 2500);
                     case url.endsWith('/accounts/reset-password') && method === 'POST':
                         return setTimeout(resetPassword, 2500);
+                    case url.endsWith('/create-payment-intent') && method === 'POST':
+                        return createPaymentIntent();
+                    case url.endsWith('/update-orders') && method === 'POST':
+                        return setTimeout(updateOrders, 3500);
                     case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
                         return setTimeout(deleteUser, 2500);
                     default:
@@ -83,6 +87,7 @@ export function configureFakeBackend() {
                 user.verificationToken = new Date().getTime().toString();
                 user.isVerified = false;
                 user.refreshTokens = [];
+                user.orders = [];
                 delete user.confirmPassword;
                 users.push(user);
                 // users details being saved to local storage
@@ -135,7 +140,7 @@ export function configureFakeBackend() {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
-                    orders: [],
+                    orders: user.orders,
                     jwtToken: generateJwtToken(user)
                 });
             }
@@ -162,7 +167,7 @@ export function configureFakeBackend() {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
-                    orders: [],
+                    orders: user.orders,
                     jwtToken: generateJwtToken(user)
                 })
             }
@@ -251,6 +256,46 @@ export function configureFakeBackend() {
                 localStorage.setItem(usersKey, JSON.stringify(users));
 
                 return ok();
+            }
+
+            function createPaymentIntent() {
+                // 'create payment intent' code using real backend would come here!
+                // for now, there's no real backend so the functionality may not work
+                // atleast to the best of my knowledge. hoping to learn nextjs to help 
+                // out with this.
+                return ok({
+                    clientSecret: 'sk-fake-client-secret-returned'
+                })
+            }
+
+            function updateOrders() {
+                const ordersBody = body();
+
+                let accountUser = ordersBody['user']
+                let cart = ordersBody['cart']
+
+                const user = users.find(x => x.email === accountUser.email);
+
+                if (!user) return error('Your Email is not registered!');
+                
+                // update orders
+                let i;
+                for (i=0; i < cart.length; i++) {
+                    cart[i]['dateCreated'] = new Date().toISOString();
+                }
+                user.orders = [...user.orders, ...cart];
+                localStorage.setItem(usersKey, JSON.stringify(users));
+
+                return ok({
+                    id: user.id,
+                    email: user.email,
+                    title: user.title,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    role: user.role,
+                    orders: user.orders,
+                    jwtToken: generateJwtToken(user)
+                })
             }
 
     

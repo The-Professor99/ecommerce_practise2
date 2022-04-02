@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -45,8 +46,13 @@ module.exports = {
         }
     },
     plugins: [new HtmlWebpackPlugin({
-        template: './public/index.html'
-    })],
+        template: './public/index.html',
+        publicPath: '/'
+    }), 
+        new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    })
+    ],
     devServer: {
         historyApiFallback: true
     },

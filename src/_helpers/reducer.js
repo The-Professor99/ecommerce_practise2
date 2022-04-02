@@ -87,6 +87,12 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 alerts: filteredAlerts
             }
+        case "EMPTY_CART":
+            localStorage.setItem('carts', JSON.stringify([]));
+            return {
+            ...state,
+            cart: [],
+            };
         default: 
             return state;
     }

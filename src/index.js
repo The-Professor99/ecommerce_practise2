@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { Men, Women, About, Contact, NotFound, Collections, Item } from '@/pages';
+import { Men, Women, About, Contact, NotFound, Collections, Item, Payments } from '@/pages';
 import { Login, Register, Account, ForgotPassword, VerifyEmail, ResetPassword  } from '@/account';
 import { Profile, UserDetails, UserOrders, UserAddress, Settings } from '@/profile';
 
@@ -29,6 +29,7 @@ function startApp() {
           <Route path='women' element={<Women />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='payments' element={<Payments />} />
           <Route path='items/:itemId' element={<Item />} />
           <Route path="*" element={<NotFound />} />
           <Route element={<Account />} >

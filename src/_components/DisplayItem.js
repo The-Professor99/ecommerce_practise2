@@ -4,6 +4,7 @@ import useLocalStorage from 'use-local-storage';
 
 import { useStateValue } from '@/_helpers';
 import { alertService } from '@/_services';
+import { useNavigate } from 'react-router-dom';
 
 import nextIcon from '../images/icon-next.svg';
 import prevIcon from '../images/icon-previous.svg';
@@ -14,11 +15,16 @@ import cartIcon from '../images/icon-cart.svg';
 import './DisplayItem.css';
 
 function DisplayItem(props) {
-    
+    const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1)
     const [{ cart }, dispatch] = useStateValue();
 
     let dataLength = 20 // change this to reflect length of whole products array
+    if (!props.value) {
+        return (
+            <h2 className='txt-black-white'>Item Not Found!</h2>
+        )
+    }
     let strPrice = props.value.price.toString()
     let percOff = parseInt(strPrice.charAt(0) + 0, 10)
   

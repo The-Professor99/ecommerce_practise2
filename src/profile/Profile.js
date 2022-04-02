@@ -3,6 +3,8 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { SideBar, Alert } from '@/_components';
 import { useStateValue } from '@/_helpers';
 
+// import './Profile.css'
+
 function Profile() {
     const [{ user}] = useStateValue();
     const location = useLocation();

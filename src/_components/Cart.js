@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useStateValue, getCartTotal } from '@/_helpers';
 import { alertService } from '@/_services';
 
@@ -59,10 +59,10 @@ function Cart() {
   
   const [{ cart }, dispatch] = useStateValue();
 
-  const showTotal = () => {
-        let total = getCartTotal(cart);
-        alert(`Your Total Purchase is: ${total.toFixed(2)}`)
-  }
+//   const showTotal = () => {
+//         let total = getCartTotal(cart);
+//         alert(`Your Total Purchase is: ${total.toFixed(2)}`)
+//   }
   return (
     <div className="Cart cart-orders-display card">
         <div className="card-block">
@@ -82,12 +82,13 @@ function Cart() {
                     <div 
                     className="checkout" 
                     id="checkOut">
+                        <Link to='/payments'>
                         <button 
                         type="button" 
-                        className="txt-white" 
-                        onClick={showTotal}>
+                        className="txt-white" >
                             Checkout
                         </button>
+                        </Link>
                     </div>
                 </div>
             ) : (
