@@ -71,7 +71,6 @@ export function configureFakeBackend() {
                 // assign user id and a few other properties then save
                 user.id = newUserId();
                 let temporaryId = user.id + 1;
-                // if (user.id === 1) {
                 if (temporaryId === 1) {
                     // first registered user is an admin
                     // This is because we are using a fake backend system.

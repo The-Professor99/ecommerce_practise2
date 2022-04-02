@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from 'react-data-table-component';
-import { useStateValue } from '@/_helpers';
-
 import './DisplayOrders.css';
 
 function DisplayOrders(props) {
-    // const [{ user }] = useStateValue();
 
     const customStyles = {
         header: {
@@ -70,28 +67,6 @@ function DisplayOrders(props) {
             theme='dark'
             />
         </div>
-    // <div 
-    // className='DisplayItems flex-container'>
-    //     <div 
-    //     className="card" >
-    //         <img 
-    //         className="card-img-top" 
-    //         src={props.value.image} 
-    //         alt="Produce Image" />
-    //         <div className="card-block">
-    //             <h4 className="card-title">
-    //                 {(props.value.title).toUpperCase()}
-    //             </h4>
-    //             <p 
-    //             className="card-text" >
-    //                 {(props.value.price)} x
-    //             </p>
-    //             <p>
-    //                 {()}
-    //             </p>
-    //         </div>
-    //     </div>
-    // </div>
   )
 }
 
