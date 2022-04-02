@@ -5,22 +5,32 @@ import { useStateValue } from '@/_helpers';
 
 import './DisplayOrders.css';
 
-function DisplayOrders() {
-    const [{ user }] = useStateValue();
+function DisplayOrders(props) {
+    // const [{ user }] = useStateValue();
+
+    const customStyles = {
+        header: {
+            style: {
+                textAlign: 'center',
+            },
+        }
+    };
+
+    
     const columns = [
         {
-            name: 'Title',
-            selector: row => row.title,
+            name: 'Name',
+            selector: row => (row.title).toLowerCase(),
             sortable: true
         },
         {
             name: 'Price',
-            selector: row => row.price,
+            selector: row => (row.price).toFixed(1),
             sortable: true
         },
         {
             name: 'Quantity',
-            selector: row => row.quantity,
+            selector: row => (row.quantity).toFixed(1),
             sortable: true
         },
         {
@@ -29,36 +39,36 @@ function DisplayOrders() {
             sortable: true
         },
         {
-            name: '',
-            selector: row => <Link to={`/items/${row.linkId}`} >View Item</Link>,
-        },
-        {
             name: 'Date Placed',
             selector: row => new Date(row.dateCreated).toString('YYYY-MM-dd'),
-            sortable: true
+        },
+        {
+            name: '',
+            selector: row => <Link to={`/items/${row.linkId}`} >View Item</Link>,
         }
     ];
     // console.log(props)
-    const dataCopy = JSON.parse(JSON.stringify(user.orders));
+    const dataCopy = JSON.parse(JSON.stringify(props.value));
 
     let i;
     for (i=0; i < dataCopy.length; i++) {
         dataCopy[i]['linkId'] = dataCopy[i]['id']
         delete dataCopy[i]['id']
     }
+
   return (
         <div className='DisplayOrders'>
 
             <DataTable
             title='Completed Orders'
-            key={1}
             columns={columns}
-            data={dataCopy}
+            data={dataCopy.reverse()}
+            highlightOnHover
             pagination
             responsive
             striped
-            noDataComponent
-            classNames="table-component"
+            customStyles={customStyles} 
+            theme='dark'
             />
         </div>
     // <div 

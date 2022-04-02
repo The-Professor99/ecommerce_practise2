@@ -4,20 +4,19 @@ import { InProgress } from '@/_components';
 import { useStateValue } from '@/_helpers';
 
 import './UserOrders.css';
-import { DisplayOrders } from '@/_components';
+import { DisplayOrders, NoOrder } from '@/_components';
 
 function UserOrders() {
   const [{ user }] = useStateValue();
   console.log(user.orders, 'orders11')
   return (
-    false ? (
+    user.orders?.length ? (
       <>
-      <h3 className='txt-dark-blue'>Completed Orders</h3>
-      <DisplayOrders  />
+      <DisplayOrders  value={user.orders} />
       </>
     ) 
     : (
-    <InProgress />
+    <NoOrder />
     )
   )
 }

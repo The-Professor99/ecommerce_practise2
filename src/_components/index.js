@@ -10,3 +10,4 @@ export * from './SideBar';
 export * from './InProgress';
 export * from './Alert';
 export * from './DisplayOrders';
+export * from './NoOrder';

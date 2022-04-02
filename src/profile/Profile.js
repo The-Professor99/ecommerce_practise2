@@ -3,7 +3,7 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { SideBar, Alert } from '@/_components';
 import { useStateValue } from '@/_helpers';
 
-// import './Profile.css'
+import './Profile.css'
 
 function Profile() {
     const [{ user}] = useStateValue();
@@ -15,7 +15,7 @@ function Profile() {
         <div className="container-fluid">
             <div className="row flex-nowrap">
                 <SideBar />
-                <div className="col p-4">
+                <div className="col p-4 profile-container">
                     <Alert />
                     <Outlet />
                 </div>
