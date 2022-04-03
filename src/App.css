@@ -4,23 +4,23 @@ html {
   font-size: 16px; /* used absolute value so the user's \
   browser settings won't scale my site in unanticipated ways */
 }
-*, 
-*::before, 
+*,
+*::before,
 *::after {
   box-sizing: inherit;
 }
-html, 
+html,
 body {
   height: 100%;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-weight: 400;
 }
 img {
   max-width: 100%;
-} 
+}
 a {
   cursor: pointer;
-} 
+}
 button:active {
   background-color: blue;
 }
@@ -45,10 +45,10 @@ button {
   color: var(--background);
 }
 .txt-gray-purple {
-  color: var(--tertiary-color2)
+  color: var(--tertiary-color2);
 }
 .txt-gold-blue {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 .txt-gray-blue {
   color: hsl(219, 9%, 45%);
@@ -78,7 +78,7 @@ button {
   justify-content: flex-start;
 }
 h2 {
-  text-align: center;    
+  text-align: center;
   font-size: 2rem;
   text-decoration: underline;
   margin-top: 1rem;
@@ -90,9 +90,9 @@ h2 {
 }
 .data-container {
   margin: auto;
-  width: 95%; 
-  display: flex; 
-  flex-wrap: wrap;    
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   min-height: 50vh;
   align-content: center;

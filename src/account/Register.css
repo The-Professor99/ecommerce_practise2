@@ -1,20 +1,22 @@
-.Register button.btn, .form-check-input.valid {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.Register button.btn,
+.form-check-input.valid {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
-.confirm-password, .password {
-    width: 85%;
+.confirm-password,
+.password {
+  width: 85%;
 }
 .toggle-eye {
-    width: 10%;
-    background: white;
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    border-radius: 0.3rem;
-    padding: 0 0.9rem;
+  width: 10%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  border-radius: 0.3rem;
+  padding: 0 0.9rem;
 }
 .eye {
-    color: hsl(220, 13%, 13%);
-    align-self: center;
+  color: hsl(220, 13%, 13%);
+  align-self: center;
 }

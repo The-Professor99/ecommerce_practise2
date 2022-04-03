@@ -1,24 +1,24 @@
 footer {
-    margin-top: auto;
-    /* padding: 0.5rem; */
-    padding-top: 0.2rem;
-    background-color: var(--primary-color);
-    font-size: 1.2rem;
-    text-align: center;    
-    width: 100%;
+  margin-top: auto;
+  /* padding: 0.5rem; */
+  padding-top: 0.2rem;
+  background-color: var(--primary-color);
+  font-size: 1.2rem;
+  text-align: center;
+  width: 100%;
 }
 
-footer p { 
-    margin-bottom: 0;
-    color: var(--text-primary);
+footer p {
+  margin-bottom: 0;
+  color: var(--text-primary);
 }
 footer p a {
-    color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 footer p a:hover {
-    color: var(--primary-color2)
+  color: var(--primary-color2);
 }
 
 footer button.btn {
-    background-color: transparent;
+  background-color: transparent;
 }

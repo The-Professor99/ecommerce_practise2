@@ -1,7 +1,8 @@
 {
-  "name": "boiler-test3",
+  "name": "ecommerce-practice",
   "version": "0.1.0",
-  "private": true,
+  "repository": "https://github.com/The-Professor99/ecommerce_practise2",
+  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.17.8",
     "@stripe/react-stripe-js": "^1.7.0",
@@ -34,8 +35,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open",
+    "build": "webpack --mode production",
     "start2": "react-scripts start",
-    "build": "react-scripts build",
+    "build2": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

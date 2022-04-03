@@ -1,101 +1,103 @@
-import { alertService } from '@/_services';
+import { alertService } from "@/_services";
 
 let localCart;
 let localUser;
-if (localStorage.getItem('carts')) {
-    localCart = JSON.parse(localStorage.getItem("carts"));
+if (localStorage.getItem("carts")) {
+  localCart = JSON.parse(localStorage.getItem("carts"));
 } else {
-    localCart = []
+  localCart = [];
 }
 
-if (localStorage.getItem('user-account-test-ecommerce')) {
-    localUser = JSON.parse(localStorage.getItem("user-account-test-ecommerce"));
+if (localStorage.getItem("user-account-test-ecommerce")) {
+  localUser = JSON.parse(localStorage.getItem("user-account-test-ecommerce"));
 } else {
-    localUser = null
+  localUser = null;
 }
-
-
-
 
 export const initialState = {
-    cart: localCart,
-    user: localUser,
-    alerts: []
+  cart: localCart,
+  user: localUser,
+  alerts: [],
 };
 
 // Selector
 export const getCartTotal = (cart) =>
-    cart?.reduce((amount, item) => (item.price * item.quantity)  + amount, 0)
+  cart?.reduce((amount, item) => item.price * item.quantity + amount, 0);
 
-const reducer = (state=initialState, action) => {
-    switch(action.type) {
-        case 'ADD_TO_CART':
-            const indexa = state.cart.findIndex(
-                (cartitem) => cartitem.id === action.item.id
-            )
-            let newCarta = [...state.cart];
-            if (indexa >= 0) {
-                newCarta.splice(indexa, 1);
-                localStorage.setItem('carts', JSON.stringify([...newCarta, action.item]));
-                return {
-                    ...state,
-                    cart: [...newCarta, action.item]
-                }
-                
-            } else {
-                localStorage.setItem('carts', JSON.stringify([...state.cart, action.item]));
-                return {
-                    ...state,
-                    cart: [...state.cart, action.item]
-                }
-            }
-        case 'REMOVE_FROM_BASKET':
-            const index = state.cart.findIndex(
-                (cartitem) => cartitem.id === action.item.id
-            )
-            let newCart = [...state.cart];
-            if (index >= 0) {
-                newCart.splice(index, 1);
-            } else {
-                console.warn("cannot remove product. Not in cart")
-            }
-            localStorage.setItem('carts', JSON.stringify(newCart));
-            return {
-                ...state,
-                cart: newCart
-            }
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      const indexa = state.cart.findIndex(
+        (cartitem) => cartitem.id === action.item.id
+      );
+      let newCarta = [...state.cart];
+      if (indexa >= 0) {
+        newCarta.splice(indexa, 1);
+        localStorage.setItem(
+          "carts",
+          JSON.stringify([...newCarta, action.item])
+        );
+        return {
+          ...state,
+          cart: [...newCarta, action.item],
+        };
+      } else {
+        localStorage.setItem(
+          "carts",
+          JSON.stringify([...state.cart, action.item])
+        );
+        return {
+          ...state,
+          cart: [...state.cart, action.item],
+        };
+      }
+    case "REMOVE_FROM_BASKET":
+      const index = state.cart.findIndex(
+        (cartitem) => cartitem.id === action.item.id
+      );
+      let newCart = [...state.cart];
+      if (index >= 0) {
+        newCart.splice(index, 1);
+      } else {
+        console.warn("cannot remove product. Not in cart");
+      }
+      localStorage.setItem("carts", JSON.stringify(newCart));
+      return {
+        ...state,
+        cart: newCart,
+      };
 
-        case 'SET_USER':
-            return {
-                ...state,
-                user: action.user
-            }
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
 
-        case 'UPDATE_ALERTS':
-            return {
-                ...state,
-                alerts: [...state.alerts, action.alert]
-            }
-        case 'SELECT_KEEPS':
-            return {
-                ...state,
-                alerts: action.alerts
-            }
-        case 'REMOVE_ALERT':
-            const filteredAlerts = state.alerts.filter(x => x !== action.alert);
-            return {
-                ...state,
-                alerts: filteredAlerts
-            }
-        case "EMPTY_CART":
-            localStorage.setItem('carts', JSON.stringify([]));
-            return {
-            ...state,
-            cart: [],
-            };
-        default: 
-            return state;
-    }
-}
+    case "UPDATE_ALERTS":
+      return {
+        ...state,
+        alerts: [...state.alerts, action.alert],
+      };
+    case "SELECT_KEEPS":
+      return {
+        ...state,
+        alerts: action.alerts,
+      };
+    case "REMOVE_ALERT":
+      const filteredAlerts = state.alerts.filter((x) => x !== action.alert);
+      return {
+        ...state,
+        alerts: filteredAlerts,
+      };
+    case "EMPTY_CART":
+      localStorage.setItem("carts", JSON.stringify([]));
+      return {
+        ...state,
+        cart: [],
+      };
+    default:
+      return state;
+  }
+};
 
 export { reducer };

@@ -1,10 +1,8 @@
-import React from 'react';
-import { InProgress } from '@/_components';
+import React from "react";
+import { InProgress } from "@/_components";
 
 function UserAddress() {
-  return (
-    <InProgress />
-  )
+  return <InProgress />;
 }
 
-export { UserAddress }
+export { UserAddress };

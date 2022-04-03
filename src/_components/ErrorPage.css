@@ -1,13 +1,13 @@
 .ErrorPage .flex {
-    text-align: center;
-    margin-top: 3rem;
-    color: var(--text-primary);
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--text-primary);
 }
 .ErrorPage article {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 .ErrorPage svg {
-    width: 80%;
-    height: 8rem;
+  width: 80%;
+  height: 8rem;
 }

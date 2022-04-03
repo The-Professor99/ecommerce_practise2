@@ -1,18 +1,18 @@
-import { BehaviorSubject } from 'rxjs';
-import { Buffer } from 'buffer';
+import { BehaviorSubject } from "rxjs";
+import { Buffer } from "buffer";
 
-import config from 'config';
+import config from "config";
 
-import { fetchWrapper, useStateValue } from '@/_helpers';
+import { fetchWrapper, useStateValue } from "@/_helpers";
 
 const userSubject = new BehaviorSubject(null);
 const baseUrl = `${config.apiUrl}/admin`;
 
-const userKey = 'user-account-test-ecommerce';
+const userKey = "user-account-test-ecommerce";
 
 export const adminService = {
-    getUsers,
-}
+  getUsers,
+};
 
 // function login(email, password) {
 //     return fetchWrapper.post(`${baseUrl}/login`, { email, password })
@@ -26,7 +26,5 @@ export const adminService = {
 // }
 
 function getUsers() {
-    return fetchWrapper.get(baseUrl);
+  return fetchWrapper.get(baseUrl);
 }
-
-
