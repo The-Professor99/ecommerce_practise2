@@ -15,12 +15,12 @@ If you happen to come through here, please drop any form of suggestion/advice yo
 
 ## Overview
 
-This app is a basic ecommerce app built using the React Framework.
-It uses a fake backend for most of the app's functionalities such as registration, login etc.
-As there is no real backend, localStorage serves as the database for the app and email messages are sent as in-app alert messages for actions such as verification.
-Also, There is a provision for an admin page. A basic admin page whose main functionality, at present, is to list users registered. More features would be added with time as well as in the appearance.
-The admin role is given to the second registered user. This is for devs who may want to route to the admin page.
-As such, you have to create two accounts and route to the admin page using the second account only.
+- This app is a basic ecommerce app built using the React Framework.
+- It uses a fake backend for most of the app's functionalities such as registration, login etc.
+- As there is no real backend, localStorage serves as the database for the app and email messages are sent as in-app alert messages for actions such as verification.
+- Also, There is a provision for an admin page. A basic admin page whose main functionality, at present, is to list users registered. More features would be added with time as well as in the appearance.
+- The admin role is given to the second registered user. This is for devs who may want to route to the admin page.
+- As such, you have to create two accounts and route to the admin page using the second account only.
 
 
 - The documentation would be updated with more info as required!
@@ -39,6 +39,8 @@ As such, you have to create two accounts and route to the admin page using the s
 - Learn and Use Nextjs for backend server purposes. This is to enable me implement the stripe checkout payment which is currently not active. 
 - Practice using Shopify Api for checkout as well.
 - Use Google Maps/Places API in creating the shipping address page.
+- Optimize production build.
+- Address lighthouse reports.
 
 ### Useful resources
 

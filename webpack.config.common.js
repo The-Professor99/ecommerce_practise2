@@ -1,23 +1,20 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
-const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 module.exports = {
-    mode: 'development',
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist')
+    },
     module: {
         rules: [
             {
                 test: /\.js|\.jsx$/,
+                exclude: /[\\/]node_modules[\\/]/,
                 loader: 'babel-loader'
-            },
-            {
-                test: /\.less|\.css$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                    { loader: 'less-loader' }
-                ]
             },
             {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|ico)(\?[a-z0-9=.]+)?$/,
@@ -49,14 +46,9 @@ module.exports = {
     plugins: [new HtmlWebpackPlugin({
         template: './public/index.html',
         publicPath: '/'
-    }), 
-        new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed),
-    })
+    }),
+    new CleanWebpackPlugin()
     ],
-    devServer: {
-        historyApiFallback: true
-    },
     externals: {
         // global app config object
         config: JSON.stringify({

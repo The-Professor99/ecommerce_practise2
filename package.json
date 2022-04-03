@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "repository": "https://github.com/The-Professor99/ecommerce_practise2",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@babel/runtime": "^7.17.8",
     "@stripe/react-stripe-js": "^1.7.0",
@@ -35,9 +36,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open",
-    "start2": "webpack-dev-server --config=webpack.config.dev.js --open",
-    "build": "webpack --mode production",
-    "build2": "webpack --config=webpack.config.prod.js",
+    "build": "webpack --config=webpack.config.prod.js",
     "build-dev": "webpack --config=webpack.config.dev.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -67,17 +66,23 @@
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "path": "^0.12.7",
     "style-loader": "^3.3.1",
     "svg-url-loader": "^7.1.1",
+    "terser-webpack-plugin": "^5.3.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
