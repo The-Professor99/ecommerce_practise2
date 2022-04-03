@@ -21,3 +21,4 @@ protect route of admin
 checkout if to use dompurify for dangerouslysethtml
 https://stripe.com/docs/checkout/quickstart?client=next use stripe checkout page for
 checkout instead.
+perform lighthouse check and work on issues generated

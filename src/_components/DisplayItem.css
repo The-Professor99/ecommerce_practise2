@@ -88,7 +88,9 @@
   .cartButton {
       background-color: var(--primary-color)
   }
-
+  .carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: rgb(18, 18, 18);
+  }
 
   @media all and (min-width: 768px) {
     .switch-image-container {

@@ -1,9 +1,5 @@
-header {
-    background-color: blue;
-    text-align: center;
-}
-main {
+.Admin-main {
     width: 90%;
     overflow: scroll;
-    margin: auto;
+    margin: auto; 
 }

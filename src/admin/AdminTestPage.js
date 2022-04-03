@@ -9,7 +9,7 @@ import { Role, useStateValue } from '@/_helpers';
 // Basic Admin Page with no functionalities.
 // With real backend, this would be stored in a different directory
 // and doesn't share states with account pages.
-// other functionalities such as update user, set role, navbar etc will be
+// other functionalities such as update user, set role, appearance etc will be
 // added with time. For now, the page will just serve to show registered
 // users. and is embedded into the users side.
 function AdminTestPage() {
@@ -78,15 +78,15 @@ function AdminTestPage() {
         },
         {
             name: 'Verification Status',
-            selector: row => row.isVerified
+            selector: row => row.isVerified ? 'true' : 'false',
+            sortable: true
         }
     ];
-    // const dataCopy = JSON.parse(JSON.stringify(props.value));
 
   return (
     user.role === Role.Admin ? (
     <div>
-        <main>
+        <main className='Admin-main'>
             <div className='AdminTestPage'>
 
                 <DataTable
@@ -110,72 +110,3 @@ function AdminTestPage() {
 
 export { AdminTestPage }
 
-
-// function DisplayOrders(props) {
-
-//     const customStyles = {
-//         header: {
-//             style: {
-//                 textAlign: 'center',
-//             },
-//         }
-//     };
-
-    
-//     const columns = [
-//         {
-//             name: 'Name',
-//             selector: row => (row.title).toLowerCase(),
-//             sortable: true
-//         },
-//         {
-//             name: 'Price',
-//             selector: row => (row.price).toFixed(1),
-//             sortable: true
-//         },
-//         {
-//             name: 'Quantity',
-//             selector: row => (row.quantity).toFixed(1),
-//             sortable: true
-//         },
-//         {
-//             name: 'Total',
-//             selector: row => (row.price * row.quantity).toFixed(2),
-//             sortable: true
-//         },
-//         {
-//             name: 'Date Placed',
-//             selector: row => new Date(row.dateCreated).toString('YYYY-MM-dd'),
-//         },
-//         {
-//             name: '',
-//             selector: row => <Link to={`/items/${row.linkId}`} >View Item</Link>,
-//         }
-//     ];
-//     const dataCopy = JSON.parse(JSON.stringify(props.value));
-
-//     let i;
-//     for (i=0; i < dataCopy.length; i++) {
-//         dataCopy[i]['linkId'] = dataCopy[i]['id']
-//         delete dataCopy[i]['id']
-//     }
-
-//   return (
-//         <div className='DisplayOrders'>
-
-//             <DataTable
-//             title='Completed Orders'
-//             columns={columns}
-//             data={dataCopy.reverse()}
-//             highlightOnHover
-//             pagination
-//             responsive
-//             striped
-//             customStyles={customStyles} 
-//             theme='dark'
-//             />
-//         </div>
-//   )
-// }
-
-// export { DisplayOrders }
