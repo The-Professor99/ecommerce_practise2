@@ -12,6 +12,10 @@ export const fetchWrapper = {
 async function get(url) {
     const requestOptions = {
         method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            ...authHeader(url) 
+        },
     };
     const response = await fetch(url, requestOptions);
     return handleResponse(response);

@@ -47,6 +47,8 @@ export function configureFakeBackend() {
                         return setTimeout(updateOrders, 3500);
                     case url.match(/\/accounts\/\d+$/) && method === 'DELETE':
                         return setTimeout(deleteUser, 2500);
+                    case url.endsWith('/admin') && method === 'GET':
+                        return getUsers();
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -70,14 +72,18 @@ export function configureFakeBackend() {
     
                 // assign user id and a few other properties then save
                 user.id = newUserId();
-                let temporaryId = user.id + 1;
-                if (temporaryId === 1) {
+                // let temporaryId = user.id + 1;
+                // console.log(temporaryId)
+                if (user.id === 2) {
                     // first registered user is an admin
                     // This is because we are using a fake backend system.
                     // For a real backend system, a registration page may be made 
                     // for admin registration.
-                    // However, for now, no user is being assigned an id of 1. 
-                    // for the sake of this test practice.
+                    // for now, the second person to register is given the admin 
+                    // role. this decision was arrived based on consideration of 
+                    // most normal users not registering more than one accounts
+                    // except for devs who may go through the documentation and want
+                    // to try it out.
                     user.role = Role.Admin;
                 } else {
                     user.role = Role.User;
@@ -295,6 +301,12 @@ export function configureFakeBackend() {
                     orders: user.orders,
                     jwtToken: generateJwtToken(user)
                 })
+            }
+
+            function getUsers() {
+                if (!isAuthorized(Role.Admin)) return unauthorized();
+
+                return ok(users);
             }
 
     

@@ -8,6 +8,7 @@ import { Profile, UserDetails, UserOrders, UserAddress, Settings } from '@/profi
 
 import { configureFakeBackend, useStateValue } from '@/_helpers';
 import { accountService } from './_services';
+import { AdminTestPage } from '@/admin';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -31,6 +32,7 @@ function startApp() {
           <Route path='contact' element={<Contact />} />
           <Route path='payments' element={<Payments />} />
           <Route path='items/:itemId' element={<Item />} />
+          <Route path='/admin' element={<AdminTestPage />} />
           <Route path="*" element={<NotFound />} />
           <Route element={<Account />} >
             <Route path='/account/login' element={<Login />} />
