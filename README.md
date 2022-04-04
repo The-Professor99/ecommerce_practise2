@@ -31,7 +31,7 @@ If you happen to come through here, please drop any form of suggestion/advice yo
 
 ### Links
 
-- Live Site URL: [Check out the app here](https://production-site.com)
+- Live Site URL: [Check out the app here](https://ecommerce-practice-99.netlify.app/)
 
 ### Continued development
 
