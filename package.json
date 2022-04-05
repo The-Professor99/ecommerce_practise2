@@ -35,7 +35,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "echo 'comment out the first icon link in /public/index.html then run this again' && webpack-dev-server --config=webpack.config.dev.js --open",
     "build": "webpack --config=webpack.config.prod.js && echo '/* /index.html 200' | cat >dist/_redirects",
     "build-dev": "webpack --config=webpack.config.dev.js",
     "test": "react-scripts test",
