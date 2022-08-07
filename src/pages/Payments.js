@@ -48,11 +48,12 @@ function Payments() {
             dispatch({
               type: "EMPTY_CART",
             });
+            setTransactionStatus("success");
           })
           .catch((error) => {
             alertService.error(error);
+            setTransactionStatus("failed");
           });
-        setTransactionStatus("success");
       } else {
         setTransactionStatus("failed");
       }
@@ -109,7 +110,9 @@ function Payments() {
                 {cart?.length ? (
                   <FlutterWaveButton {...fwConfig} />
                 ) : (
-                  <button type="button">No item in cart</button>
+                  <button type="button" disabled>
+                    No item in cart
+                  </button>
                 )}
                 <div
                   className={
@@ -119,6 +122,19 @@ function Payments() {
                   }
                 >
                   Uh-oh. A failed transaction has occurred. Please try again.
+                </div>
+                <div
+                  className={
+                    transaction_status === "" || transaction_status === "failed"
+                      ? "result-message"
+                      : "result-message hidden"
+                  }
+                >
+                  Get Card details to make a mock payment{" "}
+                  <a href="https://developer.flutterwave.com/docs/integration-guides/testing-helpers#successful-payments">
+                    here
+                  </a>
+                  .
                 </div>
                 <div
                   className={

@@ -41,6 +41,7 @@ If you happen to come through here, please drop any form of suggestion/advice yo
 - Use Google Maps/Places API in creating the shipping address page.
 - Optimize production build.
 - Address lighthouse reports.
+- Make UI more aesthetic
 
 ### Useful resources
 
@@ -51,3 +52,5 @@ If you happen to come through here, please drop any form of suggestion/advice yo
 
 - Website - [Ihechi](https://ihechifestus9.web.app/)
 - Twitter - [The Professor99](https://www.twitter.com/FestusIhechi)
+
+<p align="center">Made using node v17.6.0 (npm v8.5.1)</p>
