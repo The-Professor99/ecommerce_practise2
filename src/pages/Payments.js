@@ -15,11 +15,8 @@ function Payments() {
   const [{ user, cart }, dispatch] = useStateValue();
   const location = useLocation();
 
-  const [isProcessing, setProcessing] = useState(false);
-  const [disabled, setDisabled] = useState(true);
   const [transaction_status, setTransactionStatus] = useState("");
 
-  console.log(user);
   const config = {
     public_key: "FLWPUBK_TEST-c6dec0d9f79fc4cca6835995b929596a-X",
     tx_ref: Date.now(),
@@ -48,13 +45,11 @@ function Payments() {
         accountService
           .updateOrders({ cart, user })
           .then(() => {
-            setProcessing(false);
             dispatch({
               type: "EMPTY_CART",
             });
           })
           .catch((error) => {
-            setProcessing(false);
             alertService.error(error);
           });
         setTransactionStatus("success");
