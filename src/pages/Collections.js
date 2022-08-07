@@ -17,6 +17,8 @@ const dataUrl = "https://fakestoreapi.com";
 
 function Collections() {
   const { isLoading, data, error } = useFetch(`${dataUrl}/products`);
+
+  console.log(isLoading, data, error);
   let [searchParams, setSearchParams] = useSearchParams();
 
   if (error) {
